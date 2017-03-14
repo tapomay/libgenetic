@@ -266,77 +266,91 @@ def check_match(population, ninemerData):
     ret /= float(len(populationStrData))
     return ret
 
-def main(GEN_COUNT = 20):
-    cssFile = 'data/splicesite_data/CrypticSpliceSite.tsv'
-    authssFile = 'data/splicesite_data/EI_true_9.tsv'
-    cssGA = GASpliceSites.load_data_tsv(cssFile)
-    authssGA = GASpliceSites.load_data_tsv(authssFile)
-    cssGASpliceSites = GASpliceSites(cssGA)
-    authGASpliceSites = GASpliceSites(authssGA)
+def find_best_gens(gaBase):
+    genFitness = [gen._bestFitness for gen in gaBase._generations]
+    bestFitness_all = max(genFitness)
+    bestGenArr = filter(lambda g: g._bestFitness == bestFitness_all, gaBase._generations)
+    return bestGenArr
 
-    M = 10
+def match_stat(gaBase, authssData, cssData):
+    lastGen = gaBase._generations[-1]
+    bestGens = find_best_gens(gaBase)
+    # bestgen_scoreCss = [check_match(gen._population, cssData) for gen in bestGens]
+    # bestgen_scoreCss = max(bestgen_scoreCss)
+    # bestgen_scoreAuth = [check_match(gen._population, authssData) for gen in bestGens]
+    # bestgen_scoreAuth = max(bestgen_scoreAuth)
+    bestgen_scoreCss = -float('inf')
+    bestgen_scoreAuth = -float('inf')
+    bestgen_genCss = -1
+    bestgen_genAuth = -1
+
+    for gen in bestGens:
+        scoreCss = check_match(gen._population, cssData)
+        if scoreCss > bestgen_scoreCss:
+            bestgen_scoreCss = scoreCss
+            bestgen_genCss = gen._genIndex
+        scoreAuth = check_match(gen._population, authssData)
+        if scoreAuth > bestgen_scoreAuth:
+            bestgen_scoreAuth = scoreAuth
+            bestgen_genAuth = gen._genIndex
+
+    lastgen_scoreCss = check_match(lastGen._population, cssData)
+    lastgen_scoreAuth = check_match(lastGen._population, authssData)
+    return (bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth)
+
+def main(cssFile = 'data/splicesite_data/CrypticSpliceSite.tsv', 
+    authssFile = 'data/splicesite_data/EI_true_9.tsv', 
+    generationSize = 10, genCount = 10):
+    cssGAData = GASpliceSites.load_data_tsv(cssFile)
+    authssGAData = GASpliceSites.load_data_tsv(authssFile)
+    cssGASpliceSites = GASpliceSites(cssGAData)
+    authGASpliceSites = GASpliceSites(authssGAData)
+
+    M = generationSize
     N = 9 # 9-mers
     initPopulation = randomSpliceSitesPopulation(M, N)
     print(initPopulation)
 
-    # authThread = GASpliceSitesThread(authGASpliceSites, initPopulation, genCount = 10)
-    cssThread = GASpliceSitesThread(cssGASpliceSites, initPopulation, genCount = 10)
+    authThread = GASpliceSitesThread(authGASpliceSites, initPopulation, genCount = genCount)
+    cssThread = GASpliceSitesThread(cssGASpliceSites, initPopulation, genCount = genCount)
 
-    # authThread.start()
     cssThread.start()
-
-    # authThread.join()
     cssThread.join()
     cssGABase = cssThread.gaBase
 
-    genFitness = [gen._bestFitness for gen in cssGABase._generations]
-    bestFitness_all = max(genFitness)
-    bestGenArr = filter(lambda g: g._bestFitness == bestFitness_all, cssGABase._generations)
+    authThread.start()
+    authThread.join()
+    authGABase = authThread.gaBase
+
+    stats = []
+    stats.append(['TRAINER', 'bestgen_scoreCss', 'bestgen_scoreAuth', 'bestgen_genCss', 'bestgen_genAuth', 'lastgen_scoreCss', 'lastgen_scoreAuth'])
     
-    print("")
-    
-    for bestGen in bestGenArr:
-        print("BEST: %s" % (bestGen))
+    (bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth) = \
+        match_stat(cssGABase, authssGAData, cssGAData)
+    print("\nCSS GAStats:")
+    print("BESTGEN: cssGen_X_cssData: %s" % str(bestgen_scoreCss))
+    print("BESTGEN: cssGen_X_authData: %s" % str(bestgen_scoreAuth))
+    print("BESTGENIDX: cssGen_X_cssData: %s" % str(bestgen_genCss))
+    print("BESTGENIDX: cssGen_X_authData: %s" % str(bestgen_genAuth))
+    print("LASTGEN: cssGen_X_cssData: %s" % str(lastgen_scoreCss))
+    print("LASTGEN: cssGen_X_authData: %s" % str(lastgen_scoreAuth))
+    stats.append(['cssGABase', bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth])
 
-    bestGen = bestGenArr[0]
-    lastGen = cssGABase._generations[-1]
-    bestGenMatch_withCss = check_match(bestGen._population, cssGA)
-    bestGenMatch_withAuth = check_match(bestGen._population, authssGA)
-    print("bestGenMatch_withCss: %s" % str(bestGenMatch_withCss))
-    print("bestGenMatch_withAuth: %s" % str(bestGenMatch_withAuth))
+    (bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth) = \
+        match_stat(authGABase, authssGAData, cssGAData)
+    print("\nAUTH GAStats:")
+    print("BESTGEN: authGen_X_cssData: %s" % str(bestgen_scoreCss))
+    print("BESTGEN: authGen_X_authData: %s" % str(bestgen_scoreAuth))
+    print("BESTGENIDX: authGen_X_cssData: %s" % str(bestgen_genCss))
+    print("BESTGENIDX: authGen_X_authData: %s" % str(bestgen_genAuth))
+    print("LASTGEN: authGen_X_cssData: %s" % str(lastgen_scoreCss))
+    print("LASTGEN: authGen_X_authData: %s" % str(lastgen_scoreAuth))
+    stats.append(['authGABase', bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth])
 
-
-
-
-    # cssGAThread = main_inst(cssPwm, M, N, GEN_COUNT=100)
-    # authssGAThread = main_inst(authssPwm, M, N, GEN_COUNT=100)
-    # cssData = read(cssFile)
-    # authssData = read(authssFile)
-    # scoreFunction(pop, cssPwm, authssPwm)
-    #     cssScore
-    #     authScore
-    # cssGAThread.start
-    # authssGAThread.start
-    # join
-    # join
-
-# def main_inst(knapsack, M, N, GEN_COUNT=10):
-#     initPopulation = randomPopulation(M, N, 2)
-#     print(knapsack)
-
-#     gen0 = Generation(initPopulation)
-#     recombine = lambda population: Selections.rouletteWheel(initPopulation, knapsack.fitness)
-#     evolution = EvolutionBasic(select = recombine, crossover = Crossovers.two_point, mutate = Mutations.bool_flip)
-#     gaBase = GABase(evolution, gen0, knapsack.fitness)
-#     gaBase.execute(maxGens=GEN_COUNT)
-#     genFitness = [gen._bestFitness for gen in gaBase._generations]
-#     bestFitness_all = max(genFitness)
-#     bestGenArr = filter(lambda g: g._bestFitness == bestFitness_all, gaBase._generations)
-#     print ""
-#     for bestGen in bestGenArr:
-#         print("BEST: %s, profit: %s, weight: %s" % (bestGen, knapsack.profit(bestGen._bestSolution), knapsack.weight(bestGen._bestSolution)))
-#     print "SOLUTION: %s, solutionFitness: %s, solutionProfit: %s, solutionWeight: %s" %(knapsack._solution, 
-#         knapsack.fitness(knapsack._solution), knapsack.profit(knapsack._solution), knapsack.weight(knapsack._solution))
+    from tabulate import tabulate
+    print("\nRESULTS:")
+    print(tabulate(stats, headers='firstrow'))
+    return stats
 
 if __name__ == '__main__':
-    main()
+    main(generationSize = 10, genCount = 50)
