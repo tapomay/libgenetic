@@ -1,0 +1,8 @@
+libgenetic
+
+libgenetic.py: 
+    - Generic library for genetic algorithms
+    - Contains an example implementation of the knapsack problem
+
+ga_css.py:
+    - Implementation of genetic algorithm for evolving splice sites based on PWM score
