@@ -86,7 +86,7 @@ class PWM:
         N += len(symbolSet)
         pwmMat = frequencyMat.copy()
         pwmMat = pwmMat + 1
-        pwmMat = pwmMat / N
+        pwmMat = pwmMat / N # avoids zero probs
         return pwmMat
 
     def _logodds(self, pwmMat, symbolSet, symbolOddsMap):
@@ -95,7 +95,7 @@ class PWM:
         for idx in range(len(symIndex)):
             sym = symIndex[idx]
             symOdds = symbolOddsMap[sym]
-            ret[idx] = ret[idx] / symOdds
+            ret[idx] = ret[idx] / symOdds # -ve logvalue => less than symProb; pos => better than symProb; zero => exactly symProb
         ret = np.log2(ret)
         return ret
 
@@ -182,15 +182,16 @@ class GASpliceSites:
     def isValid9merSpliceSite(self, ninemer):
         if len(ninemer) != 9:
             raise Exception("dimension mismatch")
-        return ninemer[4] and ninemer[5]
+        return ninemer[3] == 'G' and ninemer[4] == 'T'
 
     def fitness(self, ninemer):
         if len(ninemer) != 9:
             raise Exception("dimension mismatch")
         baseScore = self._pwm.score(ninemer)
         penalty = 0
-        # if not self.isValid9merSpliceSite(ninemer):
-        #     penalty = ??? #TODO: max logodds score
+        if not self.isValid9merSpliceSite(ninemer):
+            # print("Invalid ninemer: %s" % ninemer)
+            penalty = 9 * 1000 #TODO: max logodds score; log2(1 / min(symOdds))
         ret = baseScore - penalty
         return ret
 
@@ -215,6 +216,7 @@ class GASpliceSitesThread(threading.Thread):
         self._gASpliceSites = gASpliceSites
         self._initPopulation = initPopulation
         self._genCount = genCount
+        self._gaBase = None
 
     def run(self):
         gen0 = Generation(self._initPopulation)
@@ -223,7 +225,11 @@ class GASpliceSitesThread(threading.Thread):
         evolution = EvolutionBasic(select = recombine, crossover = Crossovers.two_point, mutate = mutator)
         gaBase = GABase(evolution, gen0, self._gASpliceSites.fitness)
         gaBase.execute(maxGens=self._genCount)
-        
+        self._gaBase = gaBase
+
+    @property
+    def gaBase(self):
+        return self._gaBase
 
 def randomSpliceSitesPopulation(M, N, cardinality=4):
     randomgen = lambda: random.randint(0, cardinality - 1)
@@ -242,6 +248,24 @@ def randomSpliceSitesPopulation(M, N, cardinality=4):
         ret.append(sol)
     return ret
 
+def check_match(population, ninemerData):
+    '''
+    Args:
+    population: candidate 9mers
+    ninemerData: training 9mers
+    Returns:
+        percent match of population in ninemerData
+    '''
+    ninemerStrData = ["".join(nm) for nm in ninemerData]
+    populationStrData = ["".join(nm) for nm in population]
+    ret = 0
+    for solution in populationStrData:
+        if solution in ninemerStrData:
+            ret += 1
+
+    ret /= float(len(populationStrData))
+    return ret
+
 def main(GEN_COUNT = 20):
     cssFile = 'data/splicesite_data/CrypticSpliceSite.tsv'
     authssFile = 'data/splicesite_data/EI_true_9.tsv'
@@ -255,14 +279,34 @@ def main(GEN_COUNT = 20):
     initPopulation = randomSpliceSitesPopulation(M, N)
     print(initPopulation)
 
-    authThread = GASpliceSitesThread(authGASpliceSites, initPopulation, genCount = 10)
+    # authThread = GASpliceSitesThread(authGASpliceSites, initPopulation, genCount = 10)
     cssThread = GASpliceSitesThread(cssGASpliceSites, initPopulation, genCount = 10)
 
-    authThread.start()
+    # authThread.start()
     cssThread.start()
 
-    authThread.join()
+    # authThread.join()
     cssThread.join()
+    cssGABase = cssThread.gaBase
+
+    genFitness = [gen._bestFitness for gen in cssGABase._generations]
+    bestFitness_all = max(genFitness)
+    bestGenArr = filter(lambda g: g._bestFitness == bestFitness_all, cssGABase._generations)
+    
+    print("")
+    
+    for bestGen in bestGenArr:
+        print("BEST: %s" % (bestGen))
+
+    bestGen = bestGenArr[0]
+    lastGen = cssGABase._generations[-1]
+    bestGenMatch_withCss = check_match(bestGen._population, cssGA)
+    bestGenMatch_withAuth = check_match(bestGen._population, authssGA)
+    print("bestGenMatch_withCss: %s" % str(bestGenMatch_withCss))
+    print("bestGenMatch_withAuth: %s" % str(bestGenMatch_withAuth))
+
+
+
 
     # cssGAThread = main_inst(cssPwm, M, N, GEN_COUNT=100)
     # authssGAThread = main_inst(authssPwm, M, N, GEN_COUNT=100)
