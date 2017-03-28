@@ -1,0 +1,10 @@
+import hmm_tags as HT
+h = HT.TOE_HMM(N=2, maxIters = 10)
+h.loadBrownSymsSeq(1000)
+print(h.histo())
+h.initHMM()
+h.trainHMM()
+h.printHMM()
+seq = h.pickRandomSeq()
+logscore = h.testSyms(seq)
+print("%s: %f" % (seq, logscore))
