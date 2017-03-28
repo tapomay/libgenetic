@@ -1,0 +1,1416 @@
+Date/Time : 12/12/2001 20.04.53
+
+Intron-Exon true splice sites extraction information from filtered Genbank release 123.0
+
+AB000381  : IE true sites extracted (3)
+AB002059   (9,10) : Insufficient data sequence.
+AB002059  : IE true sites extracted (10)
+AB002137   (8,9) : Non canonical TACGC
+AB002137  : IE true sites extracted (10)
+AB002455S8: IE true sites extracted (1)
+AB005048   (5,6) : Insufficient data sequence.
+AB005048   (6,7) : Insufficient data sequence.
+AB005048   (7,8) : Insufficient data sequence.
+AB005048  : IE true sites extracted (4)
+AB005803  : IE true sites extracted (6)
+AB006987  : IE true sites extracted (8)
+AB008218S2: IE true sites extracted (1)
+AB008681  : IE true sites extracted (10)
+AB008821S2: IE true sites extracted (3)
+AB009589  : IE true sites extracted (2)
+AB012113  : IE true sites extracted (2)
+AB012668  : IE true sites extracted (1)
+AB012723   (8,9) : Non canonical AAAGG
+AB012723  : IE true sites extracted (6)
+AB012922   (1,2) : Insufficient data sequence.
+AB012922   (4,5) : Insufficient data sequence.
+AB012922   (10,11) : Insufficient data sequence.
+AB012922  : IE true sites extracted (14)
+AB013139   (11,12) : Insufficient data sequence.
+AB013139   (14,15) : Insufficient data sequence.
+AB013139  : IE true sites extracted (13)
+AB015201S2: IE true sites extracted (1)
+AB015355   (7,8) : Insufficient data sequence.
+AB015355   (15,16) : Non canonical TCAGG
+AB015355  : IE true sites extracted (13)
+AB016194  : IE true sites extracted (6)
+AB016243   (4,5) : Insufficient data sequence.
+AB016243   (5,6) : Insufficient data sequence.
+AB016243  : IE true sites extracted (4)
+AB016492   (1,2) : Insufficient data sequence.
+AB016492  : IE true sites extracted (3)
+AB016625  : IE true sites extracted (9)
+AB017567   (1,2b) : Insufficient data sequence.
+AB017567  : IE true sites extracted (4)
+AB017586   (3,4) : Found nucleotide !=AGCT.
+AB017586   (5,6) : Found nucleotide !=AGCT.
+AB017586  : IE true sites extracted (5)
+AB017602   (3,4) : Insufficient data sequence.
+AB017602   (5,6) : Insufficient data sequence.
+AB017602  : IE true sites extracted (17)
+AB018003S3: IE true sites extracted (1)
+AB018249  : IE true sites extracted (2)
+AB019433  : IE true sites extracted (7)
+AB019534  : IE true sites extracted (7)
+AB020314S2: IE true sites extracted (1)
+AB022430   (5,6) : Found nucleotide !=AGCT.
+AB022430  : IE true sites extracted (7)
+AB022785   (1,2) : Insufficient data sequence.
+AB022785   (14,15) : Insufficient data sequence.
+AB022785  : IE true sites extracted (13)
+AB023808S3: IE true sites extracted (1)
+AB024537   (1a,1b) : Non canonical GAACA
+AB024537  : IE true sites extracted (1)
+AB026584  : IE true sites extracted (3)
+AB029900S2: IE true sites extracted (2)
+AB030001  : IE true sites extracted (3)
+AB030817   (6,7) : Insufficient data sequence.
+AB030817   (9,10) : Insufficient data sequence.
+AB030817  : IE true sites extracted (20)
+AB031068   (2,3) : Insufficient data sequence.
+AB031068   (3,4) : Insufficient data sequence.
+AB031068  : IE true sites extracted (5)
+AB031740   (1,2) : Insufficient data sequence.
+AB031740  : IE true sites extracted (1)
+AB032481   (FN1,1) : Non canonical AGAGA
+AB032481  : IE true sites extracted (1)
+AB034990  : IE true sites extracted (7)
+AB035089   (2,3) : Insufficient data sequence.
+AB035089  : IE true sites extracted (6)
+AB038490   (2,3) : Insufficient data sequence.
+AB038490  : IE true sites extracted (8)
+AB038980S6: IE true sites extracted (1)
+AB042297   (2,3) : Insufficient data sequence.
+AB042297   (3,4) : Insufficient data sequence.
+AB042297  : IE true sites extracted (3)
+AB042820   (4,5) : Insufficient data sequence.
+AB042820  : IE true sites extracted (5)
+AB043885  : IE true sites extracted (4)
+AB044947   (1,2) : Insufficient data sequence.
+AB044947   (2,3) : Non canonical ATCAC
+AB044947   (5,6) : Insufficient data sequence.
+AB044947   (6,7) : Insufficient data sequence.
+AB044947   (8,9) : Insufficient data sequence.
+AB044947   (10,11) : Insufficient data sequence.
+AB044947   (11,12) : Insufficient data sequence.
+AB044947   (12,13) : Insufficient data sequence.
+AB044947   (13,14) : Insufficient data sequence.
+AB044947   (14,15) : Insufficient data sequence.
+AB044947   (15,16) : Insufficient data sequence.
+AB044947  : IE true sites extracted (5)
+AB047819  : IE true sites extracted (5)
+AB050248  : IE true sites extracted (6)
+AB050500S3: IE true sites extracted (1)
+AB050718S2 (8,9) : Insufficient data sequence.
+AB050718S2 (10,11) : Insufficient data sequence.
+AB050718S2: IE true sites extracted (6)
+AB053170  : IE true sites extracted (6)
+AB057594  : IE true sites extracted (4)
+AF000573   (4,5) : Insufficient data sequence.
+AF000573   (6,7) : Insufficient data sequence.
+AF000573  : IE true sites extracted (11)
+AF001295  : IE true sites extracted (7)
+AF003530   (2,3) : Non canonical CCCGT
+AF003530  : IE true sites extracted (0)
+AF004877   (1,2) : Insufficient data sequence.
+AF004877   (2,3) : Insufficient data sequence.
+AF004877   (3,4) : Insufficient data sequence.
+AF004877   (5,6) : Insufficient data sequence.
+AF004877   (6,7) : Insufficient data sequence.
+AF004877   (7,8) : Insufficient data sequence.
+AF004877   (8,9) : Insufficient data sequence.
+AF004877   (9,10) : Insufficient data sequence.
+AF004877   (10,11) : Insufficient data sequence.
+AF004877   (11,12) : Insufficient data sequence.
+AF004877   (12,13) : Insufficient data sequence.
+AF004877   (13,14) : Insufficient data sequence.
+AF004877   (14,15) : Insufficient data sequence.
+AF004877   (15,16) : Insufficient data sequence.
+AF004877   (17,18) : Insufficient data sequence.
+AF004877   (19,20) : Insufficient data sequence.
+AF004877   (21,22) : Insufficient data sequence.
+AF004877   (23,24) : Insufficient data sequence.
+AF004877   (25,26) : Insufficient data sequence.
+AF004877   (26,27) : Insufficient data sequence.
+AF004877   (27,28) : Insufficient data sequence.
+AF004877   (28,29) : Insufficient data sequence.
+AF004877   (29,30) : Insufficient data sequence.
+AF004877   (32,33) : Insufficient data sequence.
+AF004877   (33,34) : Insufficient data sequence.
+AF004877   (34,35) : Insufficient data sequence.
+AF004877   (35,36) : Insufficient data sequence.
+AF004877   (37,38) : Insufficient data sequence.
+AF004877   (38,39) : Insufficient data sequence.
+AF004877   (42,43) : Insufficient data sequence.
+AF004877   (44,45) : Insufficient data sequence.
+AF004877   (46,47) : Insufficient data sequence.
+AF004877  : IE true sites extracted (19)
+AF005058  : IE true sites extracted (1)
+AF007876   (4,5) : Insufficient data sequence.
+AF007876  : IE true sites extracted (5)
+AF008303  : IE true sites extracted (1)
+AF009356   (2,3) : Insufficient data sequence.
+AF009356  : IE true sites extracted (3)
+AF009962  : IE true sites extracted (1)
+AF010238  : IE true sites extracted (2)
+AF016898  : IE true sites extracted (2)
+AF017178   (2,3) : Insufficient data sequence.
+AF017178   (3,4) : Insufficient data sequence.
+AF017178   (6,7) : Insufficient data sequence.
+AF017178   (7,8) : Insufficient data sequence.
+AF017178   (8,9) : Insufficient data sequence.
+AF017178   (9,10) : Insufficient data sequence.
+AF017178   (10,11) : Insufficient data sequence.
+AF017178   (11,12) : Insufficient data sequence.
+AF017178   (12,13) : Insufficient data sequence.
+AF017178   (13,14) : Insufficient data sequence.
+AF017178   (14,15) : Insufficient data sequence.
+AF017178   (15,16) : Insufficient data sequence.
+AF017178   (17,18) : Insufficient data sequence.
+AF017178   (19,20) : Insufficient data sequence.
+AF017178   (21,22) : Insufficient data sequence.
+AF017178   (23,24) : Insufficient data sequence.
+AF017178   (25,26) : Insufficient data sequence.
+AF017178   (26,27) : Insufficient data sequence.
+AF017178   (27,28) : Insufficient data sequence.
+AF017178   (28,29) : Insufficient data sequence.
+AF017178   (29,30) : Insufficient data sequence.
+AF017178   (33-34,35) : Insufficient data sequence.
+AF017178   (35,36) : Insufficient data sequence.
+AF017178   (37,38) : Insufficient data sequence.
+AF017178   (38,39) : Insufficient data sequence.
+AF017178   (42,43) : Insufficient data sequence.
+AF017178   (44,45) : Insufficient data sequence.
+AF017178   (46,47) : Insufficient data sequence.
+AF017178  : IE true sites extracted (22)
+AF019406   (1,2) : Found nucleotide !=AGCT.
+AF019406   (2,3) : Insufficient data sequence.
+AF019406   (3,4) : Insufficient data sequence.
+AF019406   (4,5) : Insufficient data sequence.
+AF019406   (5,6) : Insufficient data sequence.
+AF019406   (6,7) : Insufficient data sequence.
+AF019406   (7,8) : Insufficient data sequence.
+AF019406   (8,9) : Insufficient data sequence.
+AF019406   (9,10) : Insufficient data sequence.
+AF019406   (10,11) : Insufficient data sequence.
+AF019406   (11,12) : Insufficient data sequence.
+AF019406   (12,13) : Insufficient data sequence.
+AF019406   (13,14) : Insufficient data sequence.
+AF019406   (14,15) : Insufficient data sequence.
+AF019406   (15,16) : Insufficient data sequence.
+AF019406   (16,17) : Insufficient data sequence.
+AF019406   (17,18) : Insufficient data sequence.
+AF019406   (18,19) : Insufficient data sequence.
+AF019406   (19,20) : Insufficient data sequence.
+AF019406   (20,21) : Insufficient data sequence.
+AF019406   (21,22) : Insufficient data sequence.
+AF019406   (22,23) : Insufficient data sequence.
+AF019406   (24,25) : Insufficient data sequence.
+AF019406   (25,26) : Insufficient data sequence.
+AF019406   (26,27) : Insufficient data sequence.
+AF019406   (28,29) : Insufficient data sequence.
+AF019406   (29,30) : Found nucleotide !=AGCT.
+AF019406  : IE true sites extracted (4)
+AF019409  : IE true sites extracted (5)
+AF025772  : IE true sites extracted (3)
+AF027153  : IE true sites extracted (1)
+AF027807   (1,2) : Insufficient data sequence.
+AF027807   (2,3) : Insufficient data sequence.
+AF027807   (3,4) : Insufficient data sequence.
+AF027807   (4,5) : Insufficient data sequence.
+AF027807   (6,7) : Insufficient data sequence.
+AF027807  : IE true sites extracted (2)
+AF032095  : IE true sites extracted (1)
+AF036329   (3,4) : Insufficient data sequence.
+AF036329  : IE true sites extracted (2)
+AF037062   (4,5) : Found nucleotide !=AGCT.
+AF037062  : IE true sites extracted (3)
+AF037207   (1,2) : Insufficient data sequence.
+AF037207  : IE true sites extracted (3)
+AF039401  : IE true sites extracted (14)
+AF039954  : IE true sites extracted (2)
+AF050110   (1a,1b) : Non canonical TCCGT
+AF050110  : IE true sites extracted (3)
+AF050737  : IE true sites extracted (6)
+AF053630  : IE true sites extracted (6)
+AF055481  : IE true sites extracted (5)
+AF058762  : IE true sites extracted (1)
+AF059650   (4,5) : Insufficient data sequence.
+AF059650   (5,6) : Insufficient data sequence.
+AF059650   (9,10) : Insufficient data sequence.
+AF059650   (11,12) : Insufficient data sequence.
+AF059650  : IE true sites extracted (10)
+AF060568  : IE true sites extracted (5)
+AF064589  : IE true sites extracted (3)
+AF065396  : IE true sites extracted (9)
+AF069074  : IE true sites extracted (2)
+AF072711  : IE true sites extracted (10)
+AF077186   (2,3) : Insufficient data sequence.
+AF077186  : IE true sites extracted (4)
+AF097738  : IE true sites extracted (12)
+AF102137   (6,7) : Insufficient data sequence.
+AF102137   (10,11) : Found nucleotide !=AGCT.
+AF102137   (13,14) : Found nucleotide !=AGCT.
+AF102137  : IE true sites extracted (19)
+AF106918  : IE true sites extracted (1)
+AF108453S7 (13,14) : Insufficient data sequence.
+AF108453S7: IE true sites extracted (4)
+AF110184  : IE true sites extracted (8)
+AF113141  : IE true sites extracted (4)
+AF119117   (11,12) : Found nucleotide !=AGCT.
+AF119117  : IE true sites extracted (13)
+AF135116  : IE true sites extracted (3)
+AF144412  : IE true sites extracted (1)
+AF146689  : IE true sites extracted (8)
+AF147787  : IE true sites extracted (2)
+AF151391S2 (3,4) : Found nucleotide !=AGCT.
+AF151391S2 (4,5) : Found nucleotide !=AGCT.
+AF151391S2 (6,7) : Found nucleotide !=AGCT.
+AF151391S2 (7,8) : Found nucleotide !=AGCT.
+AF151391S2: IE true sites extracted (5)
+AF153047  : IE true sites extracted (1)
+AF155233  : IE true sites extracted (2)
+AF163151  : IE true sites extracted (4)
+AF166007S2: IE true sites extracted (4)
+AF170811   (2a,2b) : Insufficient data sequence.
+AF170811   (5,6) : Insufficient data sequence.
+AF170811  : IE true sites extracted (4)
+AF176110  : IE true sites extracted (2)
+AF178081S2 (53,54) : Insufficient data sequence.
+AF178081S2: IE true sites extracted (7)
+AF179904  : IE true sites extracted (6)
+AF180135S9: IE true sites extracted (1)
+AF184072   (1,2) : Insufficient data sequence.
+AF184072  : IE true sites extracted (1)
+AF184119S8 (47,48) : Found nucleotide !=AGCT.
+AF184119S8: IE true sites extracted (0)
+AF185697S9: IE true sites extracted (1)
+AF188893   (2,3) : Insufficient data sequence.
+AF188893   (3,4) : Insufficient data sequence.
+AF188893  : IE true sites extracted (2)
+AF190465   (2,3) : Insufficient data sequence.
+AF190465   (4,5) : Insufficient data sequence.
+AF190465   (5,6) : Insufficient data sequence.
+AF190465  : IE true sites extracted (10)
+AF192789S5: IE true sites extracted (1)
+AF193805S2 (6,7) : Insufficient data sequence.
+AF193805S2 (7,8) : Insufficient data sequence.
+AF193805S2: IE true sites extracted (5)
+AF195508   (1,2) : Insufficient data sequence.
+AF195508  : IE true sites extracted (4)
+AF195941S7: IE true sites extracted (1)
+AF196864  : IE true sites extracted (2)
+AF200219S2: IE true sites extracted (2)
+AF202306S3: IE true sites extracted (1)
+AF202312S3: IE true sites extracted (1)
+AF206502S9: IE true sites extracted (1)
+AF209389   (2,3) : Insufficient data sequence.
+AF209389   (8,9) : Insufficient data sequence.
+AF209389  : IE true sites extracted (10)
+AF209479   (1,2) : Insufficient data sequence.
+AF209479  : IE true sites extracted (5)
+AF209480S2: IE true sites extracted (5)
+AF213884S1 (1,2) : Insufficient data sequence.
+AF213884S1 (3,4) : Insufficient data sequence.
+AF213884S1 (20,21) : Insufficient data sequence.
+AF213884S1: IE true sites extracted (20)
+AF218839S2 (6,7) : Insufficient data sequence.
+AF218839S2 (7,8) : Insufficient data sequence.
+AF218839S2 (8,9) : Insufficient data sequence.
+AF218839S2: IE true sites extracted (10)
+AF219981S6: IE true sites extracted (1)
+AF220172S3 (6,7) : Insufficient data sequence.
+AF220172S3 (8,9) : Insufficient data sequence.
+AF220172S3 (11,12) : Found nucleotide !=AGCT.
+AF220172S3 (12,13) : Insufficient data sequence.
+AF220172S3: IE true sites extracted (5)
+AF224492   (1,2) : Insufficient data sequence.
+AF224492   (4,5) : Insufficient data sequence.
+AF224492  : IE true sites extracted (6)
+AF227216S3: IE true sites extracted (2)
+AF232734S9: IE true sites extracted (1)
+AF233882S2 (11,12) : Insufficient data sequence.
+AF233882S2: IE true sites extracted (4)
+AF236151S5: IE true sites extracted (1)
+AF237382S6: IE true sites extracted (2)
+AF237621   (2,3) : Insufficient data sequence.
+AF237621   (7,8) : Insufficient data sequence.
+AF237621  : IE true sites extracted (6)
+AF239710  : IE true sites extracted (10)
+AF242197S2: IE true sites extracted (1)
+AF242299  : IE true sites extracted (3)
+AF244139  : IE true sites extracted (12)
+AF246630S2 (3,4) : Insufficient data sequence.
+AF246630S2: IE true sites extracted (2)
+AF248243S4: IE true sites extracted (2)
+AF250330   (1,2) : Insufficient data sequence.
+AF250330   (2,3) : Insufficient data sequence.
+AF250330   (3,4) : Insufficient data sequence.
+AF250330  : IE true sites extracted (2)
+AF253322  : IE true sites extracted (6)
+AF253417  : IE true sites extracted (8)
+AF261157S2: IE true sites extracted (1)
+AF274874   (2,3) : Insufficient data sequence.
+AF274874   (7,8) : Insufficient data sequence.
+AF274874  : IE true sites extracted (6)
+AF274875   (10,11) : Insufficient data sequence.
+AF274875  : IE true sites extracted (12)
+AF274889S4: IE true sites extracted (1)
+AF277164S7: IE true sites extracted (1)
+AF283513  : IE true sites extracted (3)
+AF283991   (6,7) : Insufficient data sequence.
+AF283991   (8,9) : Insufficient data sequence.
+AF283991  : IE true sites extracted (8)
+AF288992   (2,3) : Insufficient data sequence.
+AF288992   (3,4) : Insufficient data sequence.
+AF288992  : IE true sites extracted (2)
+AF294007  : IE true sites extracted (1)
+AF294008  : IE true sites extracted (1)
+AF294009  : IE true sites extracted (1)
+AF294010  : IE true sites extracted (1)
+AF294011  : IE true sites extracted (1)
+AF294012  : IE true sites extracted (1)
+AF294013  : IE true sites extracted (1)
+AF294014  : IE true sites extracted (1)
+AF294015  : IE true sites extracted (1)
+AF294019  : IE true sites extracted (1)
+AF294020  : IE true sites extracted (1)
+AF294021  : IE true sites extracted (1)
+AF294022  : IE true sites extracted (1)
+AF294023  : IE true sites extracted (1)
+AF294024  : IE true sites extracted (1)
+AF294025  : IE true sites extracted (1)
+AF294026  : IE true sites extracted (1)
+AF305572S8: IE true sites extracted (1)
+AF305731S5: IE true sites extracted (4)
+AF315942  : IE true sites extracted (7)
+AF321183   (8,9) : Insufficient data sequence.
+AF321183  : IE true sites extracted (7)
+AF323590  : IE true sites extracted (1)
+AF324889S4 (17,18) : Insufficient data sequence.
+AF324889S4 (18,19) : Insufficient data sequence.
+AF324889S4 (21,22) : Insufficient data sequence.
+AF324889S4 (22,23) : Insufficient data sequence.
+AF324889S4: IE true sites extracted (9)
+AF325216   (2,3) : Insufficient data sequence.
+AF325216  : IE true sites extracted (2)
+AF338230   (6,7) : Found nucleotide !=AGCT.
+AF338230   (17,18) : Found nucleotide !=AGCT.
+AF338230  : IE true sites extracted (22)
+AF346709S3 (6,7) : Insufficient data sequence.
+AF346709S3 (9,10) : Insufficient data sequence.
+AF346709S3 (11,12) : Insufficient data sequence.
+AF346709S3: IE true sites extracted (12)
+AY027893S6 (7,8) : Insufficient data sequence.
+AY027893S6: IE true sites extracted (6)
+D49555S5  : IE true sites extracted (1)
+D50030    : IE true sites extracted (13)
+D63789    : IE true sites extracted (2)
+D63790    : IE true sites extracted (2)
+D63861     (4,5) : Insufficient data sequence.
+D63861     (8,9) : Insufficient data sequence.
+D63861    : IE true sites extracted (7)
+D67013    : IE true sites extracted (6)
+D83195    : IE true sites extracted (8)
+D83261S3   (5,6) : Insufficient data sequence.
+D83261S3   (6,7) : Insufficient data sequence.
+D83261S3   (8,9) : Insufficient data sequence.
+D83261S3   (9,10) : Insufficient data sequence.
+D83261S3  : IE true sites extracted (4)
+D83657    : IE true sites extracted (2)
+D83956     (5,6) : Insufficient data sequence.
+D83956     (6,7) : Insufficient data sequence.
+D83956    : IE true sites extracted (5)
+D83957     (5,6) : Insufficient data sequence.
+D83957     (6,7) : Insufficient data sequence.
+D83957    : IE true sites extracted (5)
+D84344S3  : IE true sites extracted (3)
+D85429    : IE true sites extracted (2)
+D85606    : IE true sites extracted (4)
+D87675     (7,8) : Insufficient data sequence.
+D87675     (14,15) : Insufficient data sequence.
+D87675    : IE true sites extracted (15)
+D88010     (1,2) : Insufficient data sequence.
+D88010    : IE true sites extracted (4)
+D89060    : IE true sites extracted (10)
+D89501     (1,2) : Insufficient data sequence.
+D89501    : IE true sites extracted (1)
+D89870    : IE true sites extracted (4)
+F187967S12: IE true sites extracted (1)
+F251818S24: IE true sites extracted (1)
+F254850S10: IE true sites extracted (1)
+F273754S12: IE true sites extracted (1)
+F284604S12: IE true sites extracted (1)
+HENDOGLN9 : IE true sites extracted (1)
+HOELK2     (5,6) : Found nucleotide !=AGCT.
+HOELK2    : IE true sites extracted (3)
+HOMOTSP2  : IE true sites extracted (1)
+HS1MBD3    (5,6) : Insufficient data sequence.
+HS1MBD3    (9,10) : Insufficient data sequence.
+HS1MBD3    (14,15) : Insufficient data sequence.
+HS1MBD3   : IE true sites extracted (10)
+HS2AQP2   : IE true sites extracted (2)
+HS2PAPSS7 : IE true sites extracted (1)
+HS47PHOX03: IE true sites extracted (2)
+HS4MBD3   : IE true sites extracted (4)
+HS6PEX5    (11,12) : Insufficient data sequence.
+HS6PEX5   : IE true sites extracted (12)
+HSABLGR1   (2,3) : Insufficient data sequence.
+HSABLGR1   (3,4) : Insufficient data sequence.
+HSABLGR1   (4,5) : Insufficient data sequence.
+HSABLGR1   (8,9) : Non canonical TTTAT
+HSABLGR1  : IE true sites extracted (4)
+HSABLGR3  : IE true sites extracted (10)
+HSACP1S3  : IE true sites extracted (1)
+HSAENAC4   (9,10) : Insufficient data sequence.
+HSAENAC4   (10,11) : Insufficient data sequence.
+HSAENAC4  : IE true sites extracted (2)
+HSAMPKP6  : IE true sites extracted (1)
+HSATP2A1S9 (21,22) : Insufficient data sequence.
+HSATP2A1S9 (22,23) : Insufficient data sequence.
+HSATP2A1S9: IE true sites extracted (5)
+HSBARDI9  : IE true sites extracted (1)
+HSBCL3S2  : IE true sites extracted (6)
+HSBDKRBI2 : IE true sites extracted (1)
+HSBSYN3   : IE true sites extracted (1)
+HSBT32S02  (5,6) : Insufficient data sequence.
+HSBT32S02  (6,7) : Insufficient data sequence.
+HSBT32S02  (7,8) : Insufficient data sequence.
+HSBT32S02  (8,9) : Insufficient data sequence.
+HSBT32S02  (9,10) : Found nucleotide !=AGCT.
+HSBT32S02 : IE true sites extracted (0)
+HSBTDSS2  : IE true sites extracted (2)
+HSBTKS4    (6,7) : Insufficient data sequence.
+HSBTKS4    (8,9) : Insufficient data sequence.
+HSBTKS4    (9,10) : Insufficient data sequence.
+HSBTKS4    (15,16) : Insufficient data sequence.
+HSBTKS4   : IE true sites extracted (9)
+HSCALM2S04 (4,5) : Non canonical AGGAT
+HSCALM2S04: IE true sites extracted (2)
+HSCALMG2  : IE true sites extracted (4)
+HSCDO3    : IE true sites extracted (1)
+HSCHON03  : IE true sites extracted (1)
+HSCOL9A3S2 (28,29) : Insufficient data sequence.
+HSCOL9A3S2: IE true sites extracted (4)
+HSCSRP2S2 : IE true sites extracted (4)
+HSDCTN22  : IE true sites extracted (1)
+HSE2F1S03  (4,5) : Non canonical AACCC
+HSE2F1S03 : IE true sites extracted (2)
+HSECH1S04 : IE true sites extracted (3)
+HSETSF5    (9,10) : Insufficient data sequence.
+HSETSF5   : IE true sites extracted (3)
+HSG6PT3   : IE true sites extracted (1)
+HSGABRE3  : IE true sites extracted (5)
+HSGCAPII3 : IE true sites extracted (1)
+HSGGH3    : IE true sites extracted (1)
+HSGLNTR2  : IE true sites extracted (4)
+HSGM2A3   : IE true sites extracted (1)
+HSGROUCH2  (2,3) : Insufficient data sequence.
+HSGROUCH2  (3,4) : Insufficient data sequence.
+HSGROUCH2  (4,5) : Insufficient data sequence.
+HSGROUCH2 : IE true sites extracted (2)
+HSGTP20   : IE true sites extracted (1)
+HSHB9HB2  : IE true sites extracted (1)
+HSHBXEVX2 : IE true sites extracted (1)
+HSHFR3S02 : IE true sites extracted (7)
+HSHRGUNC2 : IE true sites extracted (3)
+HSHSD11K1  (1,2) : Non canonical GGCGC
+HSHSD11K1 : IE true sites extracted (3)
+HSHUMRPS2  (3,4) : Insufficient data sequence.
+HSHUMRPS2  (4,5) : Insufficient data sequence.
+HSHUMRPS2 : IE true sites extracted (0)
+HSIHRP11   (22,23) : Found nucleotide !=AGCT.
+HSIHRP11   (23,24) : Found nucleotide !=AGCT.
+HSIHRP11  : IE true sites extracted (1)
+HSIL7R7   : IE true sites extracted (1)
+HSILTX2    (7,8) : Non canonical CACCA
+HSILTX2   : IE true sites extracted (0)
+HSINPPI2   (2,3) : Insufficient data sequence.
+HSINPPI2  : IE true sites extracted (4)
+HSINTA6S9 : IE true sites extracted (1)
+HSIPA1G7   (13,14) : Insufficient data sequence.
+HSIPA1G7  : IE true sites extracted (5)
+HSKIRCI4   (6,7) : Insufficient data sequence.
+HSKIRCI4  : IE true sites extracted (1)
+HSKIRG9P4  (1,2) : Insufficient data sequence.
+HSKIRG9P4 : IE true sites extracted (1)
+HSLMX1B4  : IE true sites extracted (1)
+HSLRPSS31  (85,86) : Insufficient data sequence.
+HSLRPSS31 : IE true sites extracted (8)
+HSLY49L2  : IE true sites extracted (1)
+HSM059JP2 : IE true sites extracted (1)
+HSMSH4    : IE true sites extracted (12)
+HSMSHV8   : IE true sites extracted (9)
+HSMTGR1E13: IE true sites extracted (1)
+HSMXI1S4  : IE true sites extracted (2)
+HSNBARKS4  (8,9) : Non canonical AGGTA
+HSNBARKS4  (10,11) : Non canonical TCAGG
+HSNBARKS4  (12,13) : Insufficient data sequence.
+HSNBARKS4  (13,14) : Non canonical AGGCA
+HSNBARKS4  (15,16) : Non canonical AGGGC
+HSNBARKS4  (18,19) : Non canonical TCAGA
+HSNBARKS4 : IE true sites extracted (8)
+HSNKAT2A8  (8,9) : Insufficient data sequence.
+HSNKAT2A8 : IE true sites extracted (0)
+HSNUBNDN7 : IE true sites extracted (2)
+HSOLR4    : IE true sites extracted (2)
+HSP2X4A6   (9,10) : Insufficient data sequence.
+HSP2X4A6  : IE true sites extracted (2)
+HSPDE4CG7 : IE true sites extracted (1)
+HSPMEL17S2: IE true sites extracted (3)
+HSPMFG2   : IE true sites extracted (3)
+HSPOLE39  : IE true sites extracted (1)
+HSPPLG6   : IE true sites extracted (12)
+HSPRCAD3  : IE true sites extracted (1)
+HSPWP04    (16,17) : Insufficient data sequence.
+HSPWP04   : IE true sites extracted (5)
+HSPYGM4    (18,19) : Insufficient data sequence.
+HSPYGM4   : IE true sites extracted (1)
+HSRNPAII4 : IE true sites extracted (1)
+HSROSSA2   (3,4) : Insufficient data sequence.
+HSROSSA2  : IE true sites extracted (2)
+HSSCACD02  (8,9) : Insufficient data sequence.
+HSSCACD02 : IE true sites extracted (6)
+HSSCN2B2  : IE true sites extracted (2)
+HSSFSRP3  : IE true sites extracted (1)
+HSSMNEUR8 : IE true sites extracted (1)
+HSSMO3    : IE true sites extracted (9)
+HSSORD08  : IE true sites extracted (1)
+HSSTATSIX4 (17,18) : Insufficient data sequence.
+HSSTATSIX4 (20,21) : Insufficient data sequence.
+HSSTATSIX4: IE true sites extracted (6)
+HSSULPH05 : IE true sites extracted (1)
+HSSWAP10   (14,15) : Insufficient data sequence.
+HSSWAP10   (15,16) : Insufficient data sequence.
+HSSWAP10   (16,17) : Insufficient data sequence.
+HSSWAP10   (17,18) : Insufficient data sequence.
+HSSWAP10   (19,20) : Insufficient data sequence.
+HSSWAP10  : IE true sites extracted (2)
+HSSYN1A4  : IE true sites extracted (1)
+HSTALDR3  : IE true sites extracted (5)
+HSTCOF15   (24,25) : Insufficient data sequence.
+HSTCOF15  : IE true sites extracted (0)
+HSTERT2    (12,13) : Insufficient data sequence.
+HSTERT2   : IE true sites extracted (8)
+HSTOP2A10 : IE true sites extracted (1)
+HSTPRMPL4 : IE true sites extracted (1)
+HSTSBIN6   (12B,12C) : Insufficient data sequence.
+HSTSBIN6   (15,16) : Found nucleotide !=AGCT.
+HSTSBIN6  : IE true sites extracted (4)
+HSU01337   (7,8) : Insufficient data sequence.
+HSU01337   (11,12) : Insufficient data sequence.
+HSU01337   (12,13) : Non canonical CGGAC
+HSU01337  : IE true sites extracted (12)
+HSU02948   (1,2) : Non canonical CCACC
+HSU02948   (2,3) : Non canonical GCCTT
+HSU02948  : IE true sites extracted (2)
+HSU03735   (1,2) : Insufficient data sequence.
+HSU03735  : IE true sites extracted (1)
+HSU04357  : IE true sites extracted (2)
+HSU05259   (3,4) : Insufficient data sequence.
+HSU05259  : IE true sites extracted (3)
+HSU09954   (1,2) : Insufficient data sequence.
+HSU09954  : IE true sites extracted (6)
+HSU10685  : IE true sites extracted (1)
+HSU10686  : IE true sites extracted (1)
+HSU10687   (1-1,1-2) : Non canonical CCACT
+HSU10687   (1-2,1-3) : Non canonical TTTCA
+HSU10687   (1-3,1-4) : Non canonical TTTCA
+HSU10687   (1-4,1-5) : Non canonical TGACT
+HSU10687   (1-5,1-6) : Non canonical GCCAC
+HSU10687   (1-6,1-7) : Non canonical TCTGT
+HSU10687  : IE true sites extracted (3)
+HSU10688  : IE true sites extracted (1)
+HSU10689  : IE true sites extracted (2)
+HSU10690  : IE true sites extracted (2)
+HSU10691  : IE true sites extracted (1)
+HSU10692  : IE true sites extracted (1)
+HSU10693  : IE true sites extracted (1)
+HSU10694  : IE true sites extracted (1)
+HSU11870  : IE true sites extracted (1)
+HSU12472   (1,2) : Insufficient data sequence.
+HSU12472  : IE true sites extracted (5)
+HSU12709   (3,4) : Insufficient data sequence.
+HSU12709  : IE true sites extracted (2)
+HSU17071   (2,3) : Non canonical TCAGG
+HSU17071   (5,6) : Non canonical CTTTC
+HSU17071   (6,7) : Non canonical TGCCC
+HSU17071  : IE true sites extracted (3)
+HSU17969  : IE true sites extracted (5)
+HSU18549  : IE true sites extracted (1)
+HSU18671   (9,10) : Non canonical TCGAG
+HSU18671   (10,11) : Insufficient data sequence.
+HSU18671   (11,12) : Insufficient data sequence.
+HSU18671   (13,14) : Insufficient data sequence.
+HSU18671   (15,16) : Non canonical CACAC
+HSU18671   (17,18) : Insufficient data sequence.
+HSU18671   (21,22) : Insufficient data sequence.
+HSU18671   (22,23) : Non canonical AGGCA
+HSU18671  : IE true sites extracted (15)
+HSU19759   (1,2) : Non canonical AGGTA
+HSU19759   (3,4) : Insufficient data sequence.
+HSU19759  : IE true sites extracted (1)
+HSU19765  : IE true sites extracted (4)
+HSU19816  : IE true sites extracted (1)
+HSU20223  : IE true sites extracted (1)
+HSU20325  : IE true sites extracted (2)
+HSU20391   (1,2) : Insufficient data sequence.
+HSU20391   (2,3) : Non canonical TCCGG
+HSU20391   (3,4) : Non canonical CCGCA
+HSU20391  : IE true sites extracted (3)
+HSU20499   (2,3) : Non canonical CCCAC
+HSU20499  : IE true sites extracted (8)
+HSU20758   (1,2) : Insufficient data sequence.
+HSU20758   (2,3) : Insufficient data sequence.
+HSU20758   (4,5) : Insufficient data sequence.
+HSU20758  : IE true sites extracted (3)
+HSU20860   (1,2) : Insufficient data sequence.
+HSU20860  : IE true sites extracted (1)
+HSU20982  : IE true sites extracted (3)
+HSU22027  : IE true sites extracted (8)
+HSU22028  : IE true sites extracted (8)
+HSU25441   (1,2) : Insufficient data sequence.
+HSU25441   (2,3) : Insufficient data sequence.
+HSU25441   (3,4) : Insufficient data sequence.
+HSU25441   (4,5) : Insufficient data sequence.
+HSU25441  : IE true sites extracted (0)
+HSU25826   (1,2) : Non canonical AGGTA
+HSU25826  : IE true sites extracted (1)
+HSU26425   (2,3) : Insufficient data sequence.
+HSU26425   (5,6) : Insufficient data sequence.
+HSU26425   (23,24) : Insufficient data sequence.
+HSU26425   (28,29) : Insufficient data sequence.
+HSU26425  : IE true sites extracted (26)
+HSU27266   (9,10) : Insufficient data sequence.
+HSU27266  : IE true sites extracted (9)
+HSU28054   (7,8) : Non canonical ACGGG
+HSU28054   (10,11) : Non canonical TCGGT
+HSU28054   (11,12) : Insufficient data sequence.
+HSU28054  : IE true sites extracted (14)
+HSU29185  : IE true sites extracted (2)
+HSU29700  : IE true sites extracted (10)
+HSU29895   (1,2) : Insufficient data sequence.
+HSU29895   (2,3) : Insufficient data sequence.
+HSU29895   (4,5) : Insufficient data sequence.
+HSU29895   (6,7) : Found nucleotide !=AGCT.
+HSU29895  : IE true sites extracted (9)
+HSU29953  : IE true sites extracted (7)
+HSU31120   (1,2) : Insufficient data sequence.
+HSU31120  : IE true sites extracted (2)
+HSU32323   (2,3) : Insufficient data sequence.
+HSU32323   (5,6) : Insufficient data sequence.
+HSU32323  : IE true sites extracted (10)
+HSU33446   (1,2) : Insufficient data sequence.
+HSU33446  : IE true sites extracted (4)
+HSU34879  : IE true sites extracted (5)
+HSU37055   (11,12) : Insufficient data sequence.
+HSU37055  : IE true sites extracted (16)
+HSU40391  : IE true sites extracted (3)
+HSU41448  : IE true sites extracted (3)
+HSU41643  : IE true sites extracted (1)
+HSU41644  : IE true sites extracted (1)
+HSU41645  : IE true sites extracted (1)
+HSU43842  : IE true sites extracted (3)
+HSU43901  : IE true sites extracted (5)
+HSU46920  : IE true sites extracted (7)
+HSU48705   (3,4) : Non canonical CTCCG
+HSU48705   (11,12) : Found nucleotide !=AGCT.
+HSU48705   (14,15) : Found nucleotide !=AGCT.
+HSU48705  : IE true sites extracted (11)
+HSU48795  : IE true sites extracted (3)
+HSU48865  : IE true sites extracted (1)
+HSU49742  : IE true sites extracted (4)
+HSU51243   (1,2) : Insufficient data sequence.
+HSU51243   (13,14) : Insufficient data sequence.
+HSU51243  : IE true sites extracted (12)
+HSU51899   (1,2) : Insufficient data sequence.
+HSU51899   (2,3) : Insufficient data sequence.
+HSU51899  : IE true sites extracted (2)
+HSU52427   (3,4) : Insufficient data sequence.
+HSU52427   (4,5) : Insufficient data sequence.
+HSU52427   (6,7) : Insufficient data sequence.
+HSU52427  : IE true sites extracted (4)
+HSU52852  : IE true sites extracted (6)
+HSU53874  : IE true sites extracted (4)
+HSU57623  : IE true sites extracted (3)
+HSU57645   (1,2) : Insufficient data sequence.
+HSU57645  : IE true sites extracted (0)
+HSU62025   (4,5) : Non canonical GCAGG
+HSU62025  : IE true sites extracted (3)
+HSU65416  : IE true sites extracted (5)
+HSU66711  : IE true sites extracted (3)
+HSU66875  : IE true sites extracted (2)
+HSU68032  : IE true sites extracted (1)
+HSU70065   (5,6) : Found nucleotide !=AGCT.
+HSU70065   (15,16) : Non canonical CGAAC
+HSU70065   (17,18) : Non canonical CCAGA
+HSU70065  : IE true sites extracted (15)
+HSU80982   (1,2) : Found nucleotide !=AGCT.
+HSU80982  : IE true sites extracted (0)
+HSU81524  : IE true sites extracted (3)
+HSU83668   (2,3) : Non canonical GTGGC
+HSU83668  : IE true sites extracted (2)
+HSU86758   (3,4) : Insufficient data sequence.
+HSU86758  : IE true sites extracted (4)
+HSU89387  : IE true sites extracted (3)
+HSU94788   (2,3) : Insufficient data sequence.
+HSU94788  : IE true sites extracted (9)
+HSU96402  : IE true sites extracted (2)
+HSU96876  : IE true sites extracted (4)
+HSUATM56  : IE true sites extracted (1)
+HSUBE3AL6 : IE true sites extracted (1)
+HSZRP3    : IE true sites extracted (1)
+HUGLUT6   : IE true sites extracted (6)
+HUM17BHSDI: IE true sites extracted (4)
+HUM2OD9    (21,22) : Insufficient data sequence.
+HUM2OD9   : IE true sites extracted (1)
+HUMA1ATP  : IE true sites extracted (4)
+HUMACCYBB : IE true sites extracted (4)
+HUMACTGA  : IE true sites extracted (4)
+HUMADAG    (1,2) : Insufficient data sequence.
+HUMADAG    (8,9) : Insufficient data sequence.
+HUMADAG    (11,12) : Insufficient data sequence.
+HUMADAG   : IE true sites extracted (8)
+HUMADH507 : IE true sites extracted (1)
+HUMAFP     (1,2) : Insufficient data sequence.
+HUMAFP     (13,14) : Insufficient data sequence.
+HUMAFP    : IE true sites extracted (12)
+HUMAGAL   : IE true sites extracted (8)
+HUMAK1     (1,2) : Non canonical TACAG
+HUMAK1     (2,3) : Insufficient data sequence.
+HUMAK1    : IE true sites extracted (4)
+HUMALDRED4: IE true sites extracted (6)
+HUMALIFA  : IE true sites extracted (2)
+HUMALPHA  : IE true sites extracted (10)
+HUMALPI   : IE true sites extracted (10)
+HUMALPPD  : IE true sites extracted (10)
+HUMAMPD12 : IE true sites extracted (2)
+HUMANFA   : IE true sites extracted (1)
+HUMANFZ1  : IE true sites extracted (1)
+HUMANT2X  : IE true sites extracted (3)
+HUMAPEXN  : IE true sites extracted (4)
+HUMAPOA4A : IE true sites extracted (2)
+HUMAPOCIA  (3,4) : Insufficient data sequence.
+HUMAPOCIA : IE true sites extracted (1)
+HUMAPOCIB  (3,4) : Insufficient data sequence.
+HUMAPOCIB : IE true sites extracted (1)
+HUMAPOE4   (1,2) : Insufficient data sequence.
+HUMAPOE4  : IE true sites extracted (2)
+HUMAPRTA  : IE true sites extracted (4)
+HUMATP1A2  (2,3) : Insufficient data sequence.
+HUMATP1A2 : IE true sites extracted (21)
+HUMATP1G11: IE true sites extracted (1)
+HUMATPGG   (2,3) : Insufficient data sequence.
+HUMATPGG   (21,22) : Insufficient data sequence.
+HUMATPGG  : IE true sites extracted (19)
+HUMATPSAS : IE true sites extracted (11)
+HUMATPSYB : IE true sites extracted (9)
+HUMAZCDI  : IE true sites extracted (3)
+HUMBETGLOA: IE true sites extracted (2)
+HUMBETGLOB: IE true sites extracted (2)
+HUMBETGLOC: IE true sites extracted (2)
+HUMBETGLOD: IE true sites extracted (2)
+HUMBETGLOE: IE true sites extracted (2)
+HUMBETGLOF: IE true sites extracted (2)
+HUMBETGLOG: IE true sites extracted (2)
+HUMBETGLOH: IE true sites extracted (2)
+HUMBETGLOI: IE true sites extracted (2)
+HUMBETGLOJ: IE true sites extracted (2)
+HUMBETGLOK: IE true sites extracted (2)
+HUMBETGLOL: IE true sites extracted (2)
+HUMBETGLOM: IE true sites extracted (2)
+HUMBETGLON: IE true sites extracted (2)
+HUMBETGLOO: IE true sites extracted (2)
+HUMBETGLOP: IE true sites extracted (2)
+HUMBETGLOR: IE true sites extracted (2)
+HUMBFXIII : IE true sites extracted (11)
+HUMBHSD   : IE true sites extracted (3)
+HUMBMYH7   (1,2) : Insufficient data sequence.
+HUMBMYH7   (5,6) : Insufficient data sequence.
+HUMBMYH7   (8,9) : Insufficient data sequence.
+HUMBMYH7   (16,17) : Insufficient data sequence.
+HUMBMYH7  : IE true sites extracted (35)
+HUMBNPA    (2,3) : Insufficient data sequence.
+HUMBNPA   : IE true sites extracted (1)
+HUMBTF02   (5,6) : Insufficient data sequence.
+HUMBTF02   (6,7) : Non canonical GATTG
+HUMBTF02  : IE true sites extracted (1)
+HUMC203    (16,17) : Insufficient data sequence.
+HUMC203   : IE true sites extracted (7)
+HUMCACY   : IE true sites extracted (1)
+HUMCAD     (3,4) : Insufficient data sequence.
+HUMCAD    : IE true sites extracted (10)
+HUMCAPG   : IE true sites extracted (4)
+HUMCAVII5  (4,5) : Insufficient data sequence.
+HUMCAVII5 : IE true sites extracted (2)
+HUMCBRG   : IE true sites extracted (2)
+HUMCD19A   (5,6) : Insufficient data sequence.
+HUMCD19A   (9,10) : Insufficient data sequence.
+HUMCD19A   (10,11) : Insufficient data sequence.
+HUMCD19A   (11,12) : Insufficient data sequence.
+HUMCD19A  : IE true sites extracted (10)
+HUMCD43   : IE true sites extracted (1)
+HUMCD79A  : IE true sites extracted (4)
+HUMCEA01  : IE true sites extracted (1)
+HUMCEL    : IE true sites extracted (10)
+HUMCHIKER  (6,7) : Insufficient data sequence.
+HUMCHIKER  (8,9) : Non canonical ACCAT
+HUMCHIKER  (14,15) : Insufficient data sequence.
+HUMCHIKER : IE true sites extracted (8)
+HUMCHYMASE: IE true sites extracted (2)
+HUMCHYMB  : IE true sites extracted (4)
+HUMCNFAR06: IE true sites extracted (2)
+HUMCOL2A1Z (2,3) : Insufficient data sequence.
+HUMCOL2A1Z (3,4) : Insufficient data sequence.
+HUMCOL2A1Z (4,5) : Insufficient data sequence.
+HUMCOL2A1Z (5,6) : Insufficient data sequence.
+HUMCOL2A1Z (8,9) : Insufficient data sequence.
+HUMCOL2A1Z (9,10) : Insufficient data sequence.
+HUMCOL2A1Z (10,11) : Insufficient data sequence.
+HUMCOL2A1Z (11,12) : Insufficient data sequence.
+HUMCOL2A1Z (12,13) : Insufficient data sequence.
+HUMCOL2A1Z (13,14) : Insufficient data sequence.
+HUMCOL2A1Z (14,15) : Insufficient data sequence.
+HUMCOL2A1Z (15,16) : Insufficient data sequence.
+HUMCOL2A1Z (16,17) : Insufficient data sequence.
+HUMCOL2A1Z (17,18) : Insufficient data sequence.
+HUMCOL2A1Z (19,20) : Insufficient data sequence.
+HUMCOL2A1Z (21,22) : Insufficient data sequence.
+HUMCOL2A1Z (23,24) : Insufficient data sequence.
+HUMCOL2A1Z (25,26) : Insufficient data sequence.
+HUMCOL2A1Z (27,28) : Insufficient data sequence.
+HUMCOL2A1Z (28,29) : Insufficient data sequence.
+HUMCOL2A1Z (29,30) : Insufficient data sequence.
+HUMCOL2A1Z (30,31) : Insufficient data sequence.
+HUMCOL2A1Z (31,32) : Insufficient data sequence.
+HUMCOL2A1Z (34,35) : Insufficient data sequence.
+HUMCOL2A1Z (35,36) : Insufficient data sequence.
+HUMCOL2A1Z (36,37) : Insufficient data sequence.
+HUMCOL2A1Z (37,38) : Insufficient data sequence.
+HUMCOL2A1Z (39,40) : Insufficient data sequence.
+HUMCOL2A1Z (40,41) : Insufficient data sequence.
+HUMCOL2A1Z (44,45) : Insufficient data sequence.
+HUMCOL2A1Z (46,47) : Insufficient data sequence.
+HUMCOL2A1Z (48,49) : Insufficient data sequence.
+HUMCOL2A1Z: IE true sites extracted (21)
+HUMCOL7A1X (27,28) : Insufficient data sequence.
+HUMCOL7A1X (28,29) : Insufficient data sequence.
+HUMCOL7A1X (29,30) : Insufficient data sequence.
+HUMCOL7A1X (30,31) : Insufficient data sequence.
+HUMCOL7A1X (32,33) : Insufficient data sequence.
+HUMCOL7A1X (33,34) : Insufficient data sequence.
+HUMCOL7A1X (36,37) : Insufficient data sequence.
+HUMCOL7A1X (37,38) : Insufficient data sequence.
+HUMCOL7A1X (38,39) : Insufficient data sequence.
+HUMCOL7A1X (39,40) : Insufficient data sequence.
+HUMCOL7A1X (40,41) : Insufficient data sequence.
+HUMCOL7A1X (41,42) : Insufficient data sequence.
+HUMCOL7A1X (42,43) : Insufficient data sequence.
+HUMCOL7A1X (43,44) : Insufficient data sequence.
+HUMCOL7A1X (44,45) : Insufficient data sequence.
+HUMCOL7A1X (45,46) : Insufficient data sequence.
+HUMCOL7A1X (46,47) : Insufficient data sequence.
+HUMCOL7A1X (47,48) : Insufficient data sequence.
+HUMCOL7A1X (48,49) : Insufficient data sequence.
+HUMCOL7A1X (49,50) : Insufficient data sequence.
+HUMCOL7A1X (51,52) : Insufficient data sequence.
+HUMCOL7A1X (52,53) : Insufficient data sequence.
+HUMCOL7A1X (54,55) : Insufficient data sequence.
+HUMCOL7A1X (55,56) : Insufficient data sequence.
+HUMCOL7A1X (56,57) : Insufficient data sequence.
+HUMCOL7A1X (58,59) : Insufficient data sequence.
+HUMCOL7A1X (59,60) : Insufficient data sequence.
+HUMCOL7A1X (61,62) : Insufficient data sequence.
+HUMCOL7A1X (62,63) : Insufficient data sequence.
+HUMCOL7A1X (63,64) : Insufficient data sequence.
+HUMCOL7A1X (64,65) : Insufficient data sequence.
+HUMCOL7A1X (65,66) : Insufficient data sequence.
+HUMCOL7A1X (67,68) : Insufficient data sequence.
+HUMCOL7A1X (68,69) : Insufficient data sequence.
+HUMCOL7A1X (69,70) : Insufficient data sequence.
+HUMCOL7A1X (70,71) : Insufficient data sequence.
+HUMCOL7A1X (73,74) : Insufficient data sequence.
+HUMCOL7A1X (74,75) : Insufficient data sequence.
+HUMCOL7A1X (75,76) : Insufficient data sequence.
+HUMCOL7A1X (76,77) : Insufficient data sequence.
+HUMCOL7A1X (77,78) : Insufficient data sequence.
+HUMCOL7A1X (78,79) : Insufficient data sequence.
+HUMCOL7A1X (79,80) : Insufficient data sequence.
+HUMCOL7A1X (80,81) : Insufficient data sequence.
+HUMCOL7A1X (81,82) : Insufficient data sequence.
+HUMCOL7A1X (82,83) : Insufficient data sequence.
+HUMCOL7A1X (83,84) : Insufficient data sequence.
+HUMCOL7A1X (84,85) : Insufficient data sequence.
+HUMCOL7A1X (86,87) : Insufficient data sequence.
+HUMCOL7A1X (87,88) : Insufficient data sequence.
+HUMCOL7A1X (88,89) : Insufficient data sequence.
+HUMCOL7A1X (89,90) : Insufficient data sequence.
+HUMCOL7A1X (90,91) : Insufficient data sequence.
+HUMCOL7A1X (91,92) : Insufficient data sequence.
+HUMCOL7A1X (92,93) : Insufficient data sequence.
+HUMCOL7A1X (95,96) : Insufficient data sequence.
+HUMCOL7A1X (96,97) : Insufficient data sequence.
+HUMCOL7A1X (97,98) : Insufficient data sequence.
+HUMCOL7A1X (98,99) : Insufficient data sequence.
+HUMCOL7A1X (99,100) : Insufficient data sequence.
+HUMCOL7A1X (100,101) : Insufficient data sequence.
+HUMCOL7A1X (103,104) : Insufficient data sequence.
+HUMCOL7A1X (105,106) : Insufficient data sequence.
+HUMCOL7A1X (106,107) : Insufficient data sequence.
+HUMCOL7A1X (107,108) : Insufficient data sequence.
+HUMCOL7A1X (108,109) : Insufficient data sequence.
+HUMCOL7A1X (111,112) : Insufficient data sequence.
+HUMCOL7A1X (112,113) : Insufficient data sequence.
+HUMCOL7A1X (113,114) : Insufficient data sequence.
+HUMCOL7A1X: IE true sites extracted (48)
+HUMCOLA   : IE true sites extracted (2)
+HUMCOX5B  : IE true sites extracted (3)
+HUMCP21OH : IE true sites extracted (9)
+HUMCP21OHA: IE true sites extracted (9)
+HUMCPGISL  (1,2) : Insufficient data sequence.
+HUMCPGISL : IE true sites extracted (0)
+HUMCRABP02: IE true sites extracted (2)
+HUMCRPG   : IE true sites extracted (1)
+HUMCRPGA  : IE true sites extracted (1)
+HUMCS1    : IE true sites extracted (4)
+HUMCSFGMA  (1,2) : Insufficient data sequence.
+HUMCSFGMA : IE true sites extracted (2)
+HUMCSPA   : IE true sites extracted (4)
+HUMCSPB   : IE true sites extracted (4)
+HUMCTLA1  : IE true sites extracted (4)
+HUMCTLA1A : IE true sites extracted (4)
+HUMCYCAA  : IE true sites extracted (1)
+HUMCYP2D6 : IE true sites extracted (8)
+HUMCYP2DG : IE true sites extracted (8)
+HUMCYPBB  : IE true sites extracted (8)
+HUMCYPIIE : IE true sites extracted (8)
+HUMDEF5A  : IE true sites extracted (1)
+HUMDES     (1,2) : Insufficient data sequence.
+HUMDES     (6,7) : Insufficient data sequence.
+HUMDES    : IE true sites extracted (6)
+HUMDIHYBIL (2,3) : Found nucleotide !=AGCT.
+HUMDIHYBIL: IE true sites extracted (7)
+HUMDKERB   (2,3) : Insufficient data sequence.
+HUMDKERB   (6,7) : Insufficient data sequence.
+HUMDKERB  : IE true sites extracted (5)
+HUMDNL1L  : IE true sites extracted (8)
+HUMDODDA  : IE true sites extracted (4)
+HUMDS      (1,2) : Insufficient data sequence.
+HUMDS      (2,3) : Insufficient data sequence.
+HUMDS      (3,4) : Insufficient data sequence.
+HUMDS      (5,6) : Insufficient data sequence.
+HUMDS     : IE true sites extracted (10)
+HUMDZA2G  : IE true sites extracted (3)
+HUMEDHB17 : IE true sites extracted (5)
+HUMEDN1B  : IE true sites extracted (4)
+HUMEF1A   : IE true sites extracted (6)
+HUMELAFIN : IE true sites extracted (2)
+HUMEMBPA   (5,6) : Insufficient data sequence.
+HUMEMBPA  : IE true sites extracted (3)
+HUMENA78A  (3,4) : Insufficient data sequence.
+HUMENA78A : IE true sites extracted (2)
+HUMERPA   : IE true sites extracted (4)
+HUMETMAGA : IE true sites extracted (1)
+HUMETN3   : IE true sites extracted (1)
+HUMFABP    (3,4) : Insufficient data sequence.
+HUMFABP   : IE true sites extracted (2)
+HUMFCREB   (2,3) : Insufficient data sequence.
+HUMFCREB   (3,4) : Insufficient data sequence.
+HUMFCREB   (4,5) : Insufficient data sequence.
+HUMFCREB  : IE true sites extracted (1)
+HUMFIXG    (2,3) : Insufficient data sequence.
+HUMFIXG   : IE true sites extracted (6)
+HUMFOS    : IE true sites extracted (3)
+HUMFPR1A   (1,2) : Insufficient data sequence.
+HUMFPR1A  : IE true sites extracted (1)
+HUMFUCAS07: IE true sites extracted (1)
+HUMG0S19A : IE true sites extracted (2)
+HUMG0S19B : IE true sites extracted (2)
+HUMG0S24B : IE true sites extracted (1)
+HUMG0S8PP  (2,3) : Insufficient data sequence.
+HUMG0S8PP : IE true sites extracted (3)
+HUMGALK1A : IE true sites extracted (7)
+HUMGALTB   (3,4) : Insufficient data sequence.
+HUMGALTB   (5,6) : Insufficient data sequence.
+HUMGALTB  : IE true sites extracted (8)
+HUMGAMGLOA (3,4) : Non canonical CACAC
+HUMGAMGLOA: IE true sites extracted (4)
+HUMGAMGLOB (3,4) : Non canonical CACAC
+HUMGAMGLOB: IE true sites extracted (4)
+HUMGAPDHG : IE true sites extracted (7)
+HUMGARE   : IE true sites extracted (4)
+HUMGASTA  : IE true sites extracted (1)
+HUMGCAPB  : IE true sites extracted (3)
+HUMGCB1   : IE true sites extracted (10)
+HUMGCB2   : IE true sites extracted (10)
+HUMGFP40H  (1,2) : Insufficient data sequence.
+HUMGFP40H  (2,3) : Insufficient data sequence.
+HUMGFP40H : IE true sites extracted (2)
+HUMGHG    : IE true sites extracted (4)
+HUMGHN    : IE true sites extracted (4)
+HUMGHV    : IE true sites extracted (4)
+HUMGLPEX  : IE true sites extracted (1)
+HUMGLUT4B : IE true sites extracted (10)
+HUMGNOS48  (13,14) : Insufficient data sequence.
+HUMGNOS48  (25,26) : Non canonical CGACA
+HUMGNOS48 : IE true sites extracted (23)
+HUMGPIBAA : IE true sites extracted (1)
+HUMGPIX   : IE true sites extracted (2)
+HUMGRP78  : IE true sites extracted (7)
+HUMGSTM4A  (2,3) : Insufficient data sequence.
+HUMGSTM4A : IE true sites extracted (6)
+HUMGSTP1G  (1,2) : Insufficient data sequence.
+HUMGSTP1G : IE true sites extracted (5)
+HUMH2AZ2  : IE true sites extracted (4)
+HUMHA2WC   (1,2) : Insufficient data sequence.
+HUMHA2WC   (2,3) : Insufficient data sequence.
+HUMHA2WC   (3,4) : Insufficient data sequence.
+HUMHA2WC  : IE true sites extracted (0)
+HUMHAP    : IE true sites extracted (4)
+HUMHBA4   : IE true sites extracted (2)
+HUMHBB221 : IE true sites extracted (2)
+HUMHBBAG   (2,3) : Insufficient data sequence.
+HUMHBBAG  : IE true sites extracted (1)
+HUMHBBGG  : IE true sites extracted (1)
+HUMHBQ1A  : IE true sites extracted (2)
+HUMHIAPPA : IE true sites extracted (1)
+HUMHIS102  (1,2) : Insufficient data sequence.
+HUMHIS102  (2,3) : Insufficient data sequence.
+HUMHIS102  (3,4) : Insufficient data sequence.
+HUMHIS102 : IE true sites extracted (1)
+HUMHIS202  (3,4) : Insufficient data sequence.
+HUMHIS202 : IE true sites extracted (1)
+HUMHKATPC  (2,3) : Insufficient data sequence.
+HUMHKATPC : IE true sites extracted (20)
+HUMHLL4G  : IE true sites extracted (3)
+HUMHMG14A  (1,2) : Insufficient data sequence.
+HUMHMG14A  (2,3) : Insufficient data sequence.
+HUMHMG14A  (3,4) : Insufficient data sequence.
+HUMHMG14A  (5,6) : Insufficient data sequence.
+HUMHMG14A : IE true sites extracted (1)
+HUMHMG2A  : IE true sites extracted (4)
+HUMHMGIC01 (2,3) : Insufficient data sequence.
+HUMHMGIC01: IE true sites extracted (1)
+HUMHMGIY   (1,2) : Found nucleotide !=AGCT.
+HUMHMGIY   (6,7) : Insufficient data sequence.
+HUMHMGIY  : IE true sites extracted (5)
+HUMHOX13G : IE true sites extracted (1)
+HUMHOX4A  : IE true sites extracted (1)
+HUMHOXRAGE (9,10) : Non canonical AGGCA
+HUMHOXRAGE (12,13) : Insufficient data sequence.
+HUMHOXRAGE (17,18) : Insufficient data sequence.
+HUMHOXRAGE: IE true sites extracted (16)
+HUMHPARS1  (7,8) : Insufficient data sequence.
+HUMHPARS1 : IE true sites extracted (6)
+HUMHPRTB   (11,12) : Insufficient data sequence.
+HUMHPRTB   (12,13) : Insufficient data sequence.
+HUMHPRTB   (14,15) : Insufficient data sequence.
+HUMHPRTB   (16,17) : Insufficient data sequence.
+HUMHPRTB  : IE true sites extracted (4)
+HUMHSD3BA : IE true sites extracted (3)
+HUMHSKPQZ7 (2,3) : Insufficient data sequence.
+HUMHSKPQZ7: IE true sites extracted (4)
+HUMHSP89KD: IE true sites extracted (10)
+HUMHSP90B : IE true sites extracted (10)
+HUMHST    : IE true sites extracted (2)
+HUMI309   : IE true sites extracted (2)
+HUMIBP3   : IE true sites extracted (3)
+HUMIFNRF1A (1,2) : Non canonical TTTAC
+HUMIFNRF1A (4,5) : Insufficient data sequence.
+HUMIFNRF1A (7,8) : Insufficient data sequence.
+HUMIFNRF1A: IE true sites extracted (6)
+HUMIGERA   (1,2) : Insufficient data sequence.
+HUMIGERA  : IE true sites extracted (3)
+HUMIGFBP1 : IE true sites extracted (3)
+HUMIGFBP1A: IE true sites extracted (3)
+HUMIGHBP1  (1,2) : Insufficient data sequence.
+HUMIGHBP1 : IE true sites extracted (0)
+HUMIL1B    (2,3) : Insufficient data sequence.
+HUMIL1B   : IE true sites extracted (4)
+HUMIL2     (1,2) : Insufficient data sequence.
+HUMIL2    : IE true sites extracted (2)
+HUMIL2B    (1,2) : Insufficient data sequence.
+HUMIL2B   : IE true sites extracted (2)
+HUMIL2RGA : IE true sites extracted (7)
+HUMIL4A    (1,2) : Insufficient data sequence.
+HUMIL4A   : IE true sites extracted (2)
+HUMIL5     (1,2) : Insufficient data sequence.
+HUMIL5    : IE true sites extracted (2)
+HUMIL5A    (1,2) : Insufficient data sequence.
+HUMIL5A   : IE true sites extracted (2)
+HUMIL8A   : IE true sites extracted (3)
+HUMIL9A    (1,2) : Insufficient data sequence.
+HUMIL9A    (2,3) : Insufficient data sequence.
+HUMIL9A   : IE true sites extracted (2)
+HUMIL9RA  : IE true sites extracted (10)
+HUMIMPDH   (1,2) : Insufficient data sequence.
+HUMIMPDH   (12,13) : Insufficient data sequence.
+HUMIMPDH  : IE true sites extracted (10)
+HUMINCP   : IE true sites extracted (2)
+HUMINCPPS  (1,2) : Non canonical ACATG
+HUMINCPPS : IE true sites extracted (1)
+HUMINS01  : IE true sites extracted (1)
+HUMIRBPG  : IE true sites extracted (3)
+HUMKAL    : IE true sites extracted (4)
+HUMKAL2   : IE true sites extracted (4)
+HUMKALLIST: IE true sites extracted (3)
+HUMKEREP   (6,7) : Insufficient data sequence.
+HUMKEREP  : IE true sites extracted (6)
+HUMKERTRA  (1,2) : Non canonical AGGCA
+HUMKERTRA  (2,3) : Non canonical AGAGG
+HUMKERTRA  (3,4) : Non canonical AGGAA
+HUMKERTRA  (4,5) : Non canonical AGAGG
+HUMKERTRA  (5,6) : Non canonical AGTTT
+HUMKERTRA  (6,7) : Non canonical AGGTG
+HUMKERTRA  (7,8) : Non canonical AGTGC
+HUMKERTRA  (8,9) : Non canonical AGGAA
+HUMKERTRA  (9,10) : Non canonical AGGCA
+HUMKERTRA  (10,11) : Non canonical AGGTG
+HUMKERTRA  (11,12) : Non canonical AGGCT
+HUMKERTRA  (12,13) : Non canonical AGCGG
+HUMKERTRA  (13,14) : Non canonical AGTTA
+HUMKERTRA  (14,15) : Non canonical AGGGA
+HUMKERTRA : IE true sites extracted (0)
+HUMKRT1X   (2,3) : Insufficient data sequence.
+HUMKRT1X   (7,8) : Insufficient data sequence.
+HUMKRT1X  : IE true sites extracted (6)
+HUMLBR10  : IE true sites extracted (2)
+HUMLD51ZP3: IE true sites extracted (2)
+HUMLD78A  : IE true sites extracted (2)
+HUMLHDC    (6,7) : Insufficient data sequence.
+HUMLHDC   : IE true sites extracted (10)
+HUMLORI   : IE true sites extracted (1)
+HUMLUCT    (3,4) : Insufficient data sequence.
+HUMLUCT   : IE true sites extracted (2)
+HUMLYL1B  : IE true sites extracted (3)
+HUMLYTOXBB (1,2) : Insufficient data sequence.
+HUMLYTOXBB: IE true sites extracted (2)
+HUMMAG1A  : IE true sites extracted (1)
+HUMMAGE12X: IE true sites extracted (1)
+HUMMAGE2X  (2,3) : Insufficient data sequence.
+HUMMAGE2X : IE true sites extracted (2)
+HUMMETIF1  (1,2) : Insufficient data sequence.
+HUMMETIF1 : IE true sites extracted (1)
+HUMMGPA    (1,2) : Insufficient data sequence.
+HUMMGPA   : IE true sites extracted (2)
+HUMMH6     (5,6) : Insufficient data sequence.
+HUMMH6     (6,7) : Insufficient data sequence.
+HUMMH6    : IE true sites extracted (5)
+HUMMHA2    (5,6) : Insufficient data sequence.
+HUMMHA2    (6,7) : Insufficient data sequence.
+HUMMHA2    (7,8) : Insufficient data sequence.
+HUMMHA2   : IE true sites extracted (4)
+HUMMHANTLE (5,6) : Insufficient data sequence.
+HUMMHANTLE (6,7) : Insufficient data sequence.
+HUMMHANTLE (7,8) : Insufficient data sequence.
+HUMMHANTLE: IE true sites extracted (4)
+HUMMHB27B  (2,3) : Found nucleotide !=AGCT.
+HUMMHB27B  (5,6) : Insufficient data sequence.
+HUMMHB27B  (6,7) : Insufficient data sequence.
+HUMMHB27B : IE true sites extracted (3)
+HUMMHB27D  (5,6) : Insufficient data sequence.
+HUMMHB27D  (6,7) : Insufficient data sequence.
+HUMMHB27D : IE true sites extracted (4)
+HUMMHBA17W (5,6) : Insufficient data sequence.
+HUMMHBA17W (6,7) : Insufficient data sequence.
+HUMMHBA17W: IE true sites extracted (4)
+HUMMHCD8A  (4,5) : Insufficient data sequence.
+HUMMHCD8A  (5,6) : Insufficient data sequence.
+HUMMHCD8A : IE true sites extracted (3)
+HUMMHCHLAB (5,6) : Insufficient data sequence.
+HUMMHCHLAB (6,7) : Insufficient data sequence.
+HUMMHCHLAB: IE true sites extracted (4)
+HUMMHCP52 : IE true sites extracted (9)
+HUMMHCW1B  (5,6) : Insufficient data sequence.
+HUMMHCW1B  (6,7) : Insufficient data sequence.
+HUMMHCW1B  (7,8) : Insufficient data sequence.
+HUMMHCW1B : IE true sites extracted (4)
+HUMMHCW2B  (5,6) : Insufficient data sequence.
+HUMMHCW2B  (6,7) : Insufficient data sequence.
+HUMMHCW2B  (7,8) : Insufficient data sequence.
+HUMMHCW2B : IE true sites extracted (4)
+HUMMHDCB   (4,5) : Insufficient data sequence.
+HUMMHDCB  : IE true sites extracted (3)
+HUMMHEA    (5,6) : Insufficient data sequence.
+HUMMHEA    (6,7) : Insufficient data sequence.
+HUMMHEA   : IE true sites extracted (4)
+HUMMHHLA   (5,6) : Insufficient data sequence.
+HUMMHHLA   (6,7) : Insufficient data sequence.
+HUMMHHLA  : IE true sites extracted (5)
+HUMMHHLAJA (2,3) : Non canonical CTGCG
+HUMMHHLAJA (5,6) : Insufficient data sequence.
+HUMMHHLAJA (6,7) : Insufficient data sequence.
+HUMMHHLAJA (7,8) : Insufficient data sequence.
+HUMMHHLAJA: IE true sites extracted (3)
+HUMMHHLAJB (5,6) : Insufficient data sequence.
+HUMMHHLAJB (6,7) : Insufficient data sequence.
+HUMMHHLAJB (7,8) : Insufficient data sequence.
+HUMMHHLAJB: IE true sites extracted (4)
+HUMMHSXB4  (4,5) : Insufficient data sequence.
+HUMMHSXB4 : IE true sites extracted (0)
+HUMMIF    : IE true sites extracted (2)
+HUMMIS    : IE true sites extracted (4)
+HUMMK     : IE true sites extracted (4)
+HUMMKXX   : IE true sites extracted (4)
+HUMMRP14A : IE true sites extracted (1)
+HUMMRP8A  : IE true sites extracted (1)
+HUMMSH06  : IE true sites extracted (4)
+HUMMT2A    (1,2) : Insufficient data sequence.
+HUMMT2A   : IE true sites extracted (1)
+HUMMYCKOB : IE true sites extracted (1)
+HUMNITOX17: IE true sites extracted (1)
+HUMNKG5PRO: IE true sites extracted (4)
+HUMNTRI   : IE true sites extracted (2)
+HUMNTRIII : IE true sites extracted (2)
+HUMNUCLEO : IE true sites extracted (13)
+HUMODC1A   (2,3) : Non canonical TTTGT
+HUMODC1A  : IE true sites extracted (10)
+HUMODCA2  : IE true sites extracted (9)
+HUMOP18A  : IE true sites extracted (4)
+HUMOSTP    (1,2) : Insufficient data sequence.
+HUMOSTP    (2,3) : Insufficient data sequence.
+HUMOSTP    (4,5) : Insufficient data sequence.
+HUMOSTP   : IE true sites extracted (3)
+HUMOTNPI  : IE true sites extracted (2)
+HUMP2G3    (11,12) : Insufficient data sequence.
+HUMP2G3   : IE true sites extracted (6)
+HUMP45C17 : IE true sites extracted (7)
+HUMP45C17S: IE true sites extracted (7)
+HUMPALC   : IE true sites extracted (3)
+HUMPALD   : IE true sites extracted (3)
+HUMPAP    : IE true sites extracted (5)
+HUMPCBD   : IE true sites extracted (3)
+HUMPCI    : IE true sites extracted (4)
+HUMPCNA    (2,3) : Insufficient data sequence.
+HUMPCNA   : IE true sites extracted (4)
+HUMPDS02   (5,6) : Insufficient data sequence.
+HUMPDS02  : IE true sites extracted (3)
+HUMPEM     (2,3) : Insufficient data sequence.
+HUMPEM    : IE true sites extracted (5)
+HUMPEPYYA : IE true sites extracted (3)
+HUMPF4V1A : IE true sites extracted (2)
+HUMPGAMMG : IE true sites extracted (2)
+HUMPHOSA  : IE true sites extracted (8)
+HUMPIM1A   (2,3) : Insufficient data sequence.
+HUMPIM1A  : IE true sites extracted (4)
+HUMPKD1GEN (1,2) : Insufficient data sequence.
+HUMPKD1GEN (23,24) : Insufficient data sequence.
+HUMPKD1GEN (35,36) : Insufficient data sequence.
+HUMPKD1GEN: IE true sites extracted (46)
+HUMPLA    : IE true sites extracted (4)
+HUMPNMTA  : IE true sites extracted (2)
+HUMPP14B   (5,6) : Insufficient data sequence.
+HUMPP14B  : IE true sites extracted (4)
+HUMPPPA    (2,3) : Insufficient data sequence.
+HUMPPPA   : IE true sites extracted (1)
+HUMPRCA    (2,3) : Insufficient data sequence.
+HUMPRCA   : IE true sites extracted (6)
+HUMPREELAS: IE true sites extracted (2)
+HUMPREP   : IE true sites extracted (3)
+HUMPRF1A  : IE true sites extracted (1)
+HUMPRPH1   (1,2) : Insufficient data sequence.
+HUMPRPH1  : IE true sites extracted (2)
+HUMPRPH2   (1,2) : Insufficient data sequence.
+HUMPRPH2  : IE true sites extracted (2)
+HUMPRPHX   (1,2) : Insufficient data sequence.
+HUMPRPHX   (6,7) : Insufficient data sequence.
+HUMPRPHX  : IE true sites extracted (6)
+HUMPRT1A   (1,2) : Insufficient data sequence.
+HUMPRT1A  : IE true sites extracted (0)
+HUMPSAA   : IE true sites extracted (4)
+HUMPSAP   : IE true sites extracted (3)
+HUMPTGS2  : IE true sites extracted (9)
+HUMPTS4   : IE true sites extracted (1)
+HUMRCC1    (1,2) : Insufficient data sequence.
+HUMRCC1    (4,5) : Non canonical CCCCC
+HUMRCC1   : IE true sites extracted (11)
+HUMRCP     (2,3) : Insufficient data sequence.
+HUMRCP    : IE true sites extracted (3)
+HUMREGB    (5,6) : Insufficient data sequence.
+HUMREGB   : IE true sites extracted (3)
+HUMREGHOM : IE true sites extracted (5)
+HUMREGIBB : IE true sites extracted (5)
+HUMRETBLAS (4,5) : Insufficient data sequence.
+HUMRETBLAS (5,6) : Insufficient data sequence.
+HUMRETBLAS (13,14) : Insufficient data sequence.
+HUMRETBLAS (14,15) : Insufficient data sequence.
+HUMRETBLAS (23,24) : Insufficient data sequence.
+HUMRETBLAS (25,26) : Insufficient data sequence.
+HUMRETBLAS: IE true sites extracted (20)
+HUMRIGBCHA (3,4) : Insufficient data sequence.
+HUMRIGBCHA: IE true sites extracted (5)
+HUMROD1X  : IE true sites extracted (2)
+HUMRPS17A  (3,4) : Insufficient data sequence.
+HUMRPS17A : IE true sites extracted (3)
+HUMRPS6B  : IE true sites extracted (5)
+HUMRYR60   (104,105) : Insufficient data sequence.
+HUMRYR60  : IE true sites extracted (2)
+HUMSAA     (1,2) : Non canonical ACCAT
+HUMSAA    : IE true sites extracted (2)
+HUMSAACT  : IE true sites extracted (5)
+HUMSAP01  : IE true sites extracted (1)
+HUMSEMI   : IE true sites extracted (2)
+HUMSEMIIB : IE true sites extracted (2)
+HUMSFTP1A  (1,2) : Insufficient data sequence.
+HUMSFTP1A : IE true sites extracted (4)
+HUMSM22S2 : IE true sites extracted (4)
+HUMSMPD1G : IE true sites extracted (5)
+HUMSODA   : IE true sites extracted (9)
+HUMSODB   : IE true sites extracted (9)
+HUMSPBAA  : IE true sites extracted (10)
+HUMSPERSYN: IE true sites extracted (7)
+HUMSPROZ  : IE true sites extracted (4)
+HUMSPRPA   (1,2) : Insufficient data sequence.
+HUMSPRPA  : IE true sites extracted (1)
+HUMSPRPC  : IE true sites extracted (1)
+HUMSPRR1A : IE true sites extracted (1)
+HUMSTA     (4,5) : Insufficient data sequence.
+HUMSTA    : IE true sites extracted (4)
+HUMTA     : IE true sites extracted (5)
+HUMTBGA   : IE true sites extracted (4)
+HUMTCRBRA : IE true sites extracted (1)
+HUMTDGF1A  (1,2) : Insufficient data sequence.
+HUMTDGF1A : IE true sites extracted (4)
+HUMTFPB   : IE true sites extracted (5)
+HUMTHB     (2,3) : Insufficient data sequence.
+HUMTHB     (3,4) : Insufficient data sequence.
+HUMTHB    : IE true sites extracted (11)
+HUMTHROMA : IE true sites extracted (5)
+HUMTHY1A  : IE true sites extracted (2)
+HUMTKRA    (1,2) : Insufficient data sequence.
+HUMTKRA   : IE true sites extracted (5)
+HUMTNC2   : IE true sites extracted (4)
+HUMTNFBA   (1,2) : Non canonical AGGTT
+HUMTNFBA  : IE true sites extracted (2)
+HUMTNFX    (1,2) : Insufficient data sequence.
+HUMTNFX    (2,3) : Insufficient data sequence.
+HUMTNFX   : IE true sites extracted (1)
+HUMTNP2SS : IE true sites extracted (1)
+HUMTPA     (2,3) : Insufficient data sequence.
+HUMTPA    : IE true sites extracted (12)
+HUMTPALBU  (5,6) : Insufficient data sequence.
+HUMTPALBU : IE true sites extracted (5)
+HUMTRHYAL : IE true sites extracted (2)
+HUMTROC    (1,2) : Insufficient data sequence.
+HUMTROC   : IE true sites extracted (4)
+HUMTRPM2A4: IE true sites extracted (2)
+HUMTS1    : IE true sites extracted (6)
+HUMUBILP  : IE true sites extracted (3)
+HUMV2R    : IE true sites extracted (2)
+HUMVITDBP  (11,12) : Insufficient data sequence.
+HUMVITDBP : IE true sites extracted (11)
+HUMVPNP   : IE true sites extracted (2)
+HUNPIV    : IE true sites extracted (2)
+L29472     (4,5) : Insufficient data sequence.
+L29472    : IE true sites extracted (4)
+L47206     (5,6) : Insufficient data sequence.
+L47206     (6,7) : Insufficient data sequence.
+L47206     (7,8) : Insufficient data sequence.
+L47206    : IE true sites extracted (4)
+M33494     (1,2) : Insufficient data sequence.
+M33494    : IE true sites extracted (4)
+PEAGENE3  : IE true sites extracted (1)
+PTEN4     : IE true sites extracted (3)
+U00921     (2,3) : Non canonical CCCAG
+U00921    : IE true sites extracted (1)
+UMTNFR10S3 (7,8) : Insufficient data sequence.

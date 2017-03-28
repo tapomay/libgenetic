@@ -206,23 +206,41 @@ class GASpliceSites:
             flipValue = GASpliceSites.BASES_MAP[randomBase]
         return flipValue
 
+    def crossover(self, sol1, sol2):
+        sol1Len = len(sol1)
+        site = random.randint(1, sol1Len - 2)
+        # prevent crossover through GT at sites 3 and 4
+        negatives = [3, 4]
+        while site in negatives:
+            site = random.randint(1, sol1Len - 2)
+        return Crossovers.two_point(sol1, sol2, site = site)
+
+    def mutate(self, solution):
+        return Mutations.provided_flip(solution = solution, flipProvider = self.baseFlip, negativeSites = [3,4])
+
     def __str__(self):
         pass
         # return "P: %s\nW: %s\nC: %s\nS: %s" % (str(self._profits), str(self._weights), str(self._capacity), str(self._solution))
 
 class GASpliceSitesThread(threading.Thread):
-    def __init__(self, gASpliceSites, initPopulation, genCount):
+    def __init__(self, gASpliceSites, initPopulation, genCount,
+        crossoverProbability = 0.1, mutationProbability = 0.1):
         threading.Thread.__init__(self)
         self._gASpliceSites = gASpliceSites
         self._initPopulation = initPopulation
         self._genCount = genCount
+        self._crossoverProbability = crossoverProbability
+        self._mutationProbability = mutationProbability
         self._gaBase = None
 
     def run(self):
         gen0 = Generation(self._initPopulation)
         recombine = lambda population: Selections.rouletteWheel(population, self._gASpliceSites.fitness)
-        mutator = lambda solution: Mutations.provided_flip(solution, flipProvider = self._gASpliceSites.baseFlip)
-        evolution = EvolutionBasic(select = recombine, crossover = Crossovers.two_point, mutate = mutator)
+        crossover = self._gASpliceSites.crossover
+        mutator = self._gASpliceSites.mutate
+        evolution = EvolutionBasic(select = recombine, crossover = crossover, mutate = mutator,
+            crossoverProbability = self._crossoverProbability, 
+            mutationProbability = self._mutationProbability)
         gaBase = GABase(evolution, gen0, self._gASpliceSites.fitness)
         gaBase.execute(maxGens=self._genCount)
         self._gaBase = gaBase
@@ -300,7 +318,8 @@ def match_stat(gaBase, authssData, cssData):
 
 def main(cssFile = 'data/splicesite_data/CrypticSpliceSite.tsv', 
     authssFile = 'data/splicesite_data/EI_true_9.tsv', 
-    generationSize = 10, genCount = 10):
+    generationSize = 10, genCount = 10,
+    crossoverProbability = 0.1, mutationProbability = 0.1):
     cssGAData = GASpliceSites.load_data_tsv(cssFile)
     authssGAData = GASpliceSites.load_data_tsv(authssFile)
     cssGASpliceSites = GASpliceSites(cssGAData)
@@ -311,8 +330,10 @@ def main(cssFile = 'data/splicesite_data/CrypticSpliceSite.tsv',
     initPopulation = randomSpliceSitesPopulation(M, N)
     print(initPopulation)
 
-    authThread = GASpliceSitesThread(authGASpliceSites, initPopulation, genCount = genCount)
-    cssThread = GASpliceSitesThread(cssGASpliceSites, initPopulation, genCount = genCount)
+    authThread = GASpliceSitesThread(authGASpliceSites, initPopulation, genCount = genCount,
+        crossoverProbability = 0.1, mutationProbability = 0.1)
+    cssThread = GASpliceSitesThread(cssGASpliceSites, initPopulation, genCount = genCount,
+        crossoverProbability = 0.1, mutationProbability = 0.1)
 
     cssThread.start()
     cssThread.join()
@@ -353,4 +374,17 @@ def main(cssFile = 'data/splicesite_data/CrypticSpliceSite.tsv',
     return stats
 
 if __name__ == '__main__':
-    main(generationSize = 10, genCount = 50)
+
+    import argparse
+    parser = argparse.ArgumentParser(description='libgenetic implementation for Splice Site evolution using PWM')
+    parser.add_argument('--gen_count', type=int, help='generation count', required=True)
+    parser.add_argument('--gen_size', type=int, help='generation size', required=True)
+    parser.add_argument('--xover_prob', type=float, help='crossover probability', default=0.1)
+    parser.add_argument('--mut_prob', type=float, help='mutation probability', default=0.1)
+    parser.add_argument('--css_file', help='path to css tsv data file', default='data/splicesite_data/CrypticSpliceSite.tsv')
+    parser.add_argument('--authss_file', help='path to authss tsv data file', default='data/splicesite_data/EI_true_9.tsv')
+    args = parser.parse_args()
+
+    main(cssFile = args.css_file, authssFile = args.authss_file, 
+    generationSize = args.gen_size, genCount = args.gen_count,
+    crossoverProbability = args.xover_prob, mutationProbability = args.mut_prob)

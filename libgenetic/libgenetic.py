@@ -46,13 +46,20 @@ class Generation:
 
 class EvolutionBasic:
 
-    def __init__(self, select, crossover, mutate, crossoverProbability = 1, mutationProbability = 1):
+    def __init__(self, select, crossover, mutate, crossoverProbability = 0.1, mutationProbability = 0.1):
+        '''
+            select: F(): 
+            crossover: F(): 
+            mutate: F(): 
+        '''
         self._select = select
         self._crossover = crossover
         self._mutate = mutate
+        self._crossoverProbability = crossoverProbability
+        self._mutationProbability = mutationProbability
 
     def _recombine_pool(self, matingPool):
-        ret = []
+        ret = matingPool[:]
         indices = range(len(matingPool))
         # print("XOVER: matingPool: %s" % matingPool)
         def pickSolution(pool, idxArr):
@@ -62,33 +69,48 @@ class EvolutionBasic:
             solIdx = idxArr[pickIdx]
             sol = pool[solIdx]
             idxArr.remove(solIdx)
-            return sol
+            return (sol, solIdx)
 
-        for i in range(len(indices) / 2):
-            sol1 = pickSolution(matingPool, indices)
-            sol2 = pickSolution(matingPool, indices)
+        totalPairs = len(indices) / 2
+        randomXoverCount = int(self._crossoverProbability * totalPairs)
+        if randomXoverCount == 0:
+            randomXoverCount = 1
+        print("randomXoverCount: %d" % randomXoverCount)
+        for i in range(randomXoverCount):
+            sol1, sol1Idx = pickSolution(matingPool, indices)
+            sol2, sol2Idx = pickSolution(matingPool, indices)
             # print("XOVER: parent1: %s" % sol1)
             # print("XOVER: parent2: %s" % sol2)
             (child1, child2) = self._crossover(sol1, sol2) # @TODO: if crossoverProbability
             # print("XOVER: child1: %s" % child1)
             # print("XOVER: child2: %s" % child2)
-            ret.append(child1)
-            ret.append(child2)
-
-        if len(indices) > 0:
-            remainingIdx = indices[0]
-            ret.append(matingPool[remainingIdx])
+            ret[sol1Idx] = child1
+            ret[sol2Idx] = child2
 
         return ret
     
     def _mutate_pool(self, recombinedPool):
-        ret = [self._mutate(solution) for solution in recombinedPool] # @TODO: if mutation probability
+        ret = recombinedPool[:]
+        indices = range(len(recombinedPool))
+        def pickIdx(idxArr):
+            idx = random.randint(0, len(idxArr) - 1)
+            solIdx = idxArr[idx]
+            idxArr.remove(solIdx)
+            return solIdx
+
+        mutateCount = int(self._mutationProbability * len(indices))
+        if mutateCount == 0:
+            mutateCount = 1
+        print("mutateCount: %d" % mutateCount)
+        for i in range(mutateCount):
+            solIdx = pickIdx(indices)
+            ret[solIdx] = self._mutate(recombinedPool[solIdx])
         return ret
 
     def evolve(self, gen):
         matingPool = self._select(gen._population)
         pool_recombined = self._recombine_pool(matingPool)
-        pool_next = [self._mutate(solution) for solution in pool_recombined]
+        pool_next = self._mutate_pool(pool_recombined)
         retGen  = Generation(pool_next, genIndex = gen._genIndex + 1)
         retGen._matingPool = matingPool
         retGen._xover = pool_recombined
@@ -137,13 +159,14 @@ def f_to_intarr(fname):
 class Crossovers:
 
     @staticmethod
-    def two_point(parent1, parent2):
+    def two_point(parent1, parent2, site = None):
         parent1Len = len(parent1)
         if len(parent1) != len(parent2):
             raise Exception("Incompatible lengths: parent1: %d vz parent2: %d" % (len(parent1), len(parent2)))
 
-        site = random.randint(1, parent1Len - 2)
-        # print("Selected Xover site: %d" % site)
+        if not site:
+            site = random.randint(1, parent1Len - 2)
+        print("Selected Xover site: %d" % site)
         p1_sub = parent1[site:]
         p2_sub = parent2[site:]
         child1 = parent1[0:site] + p2_sub
@@ -154,7 +177,7 @@ class Mutations:
     @staticmethod
     def bool_flip(solution):
         site = random.randint(0, len(solution) - 1)
-        # print("Selected mutation site: %d" % site)
+        print("Selected mutation site: %d" % site)
         val = solution[site]
         val = abs(1 - val)
         ret = solution[:]
@@ -162,9 +185,12 @@ class Mutations:
         return ret
 
     @staticmethod
-    def provided_flip(solution, flipProvider):
+    def provided_flip(solution, flipProvider, negativeSites = []):
         site = random.randint(0, len(solution) - 1)
-        # print("Selected mutation site: %d" % site)
+        if negativeSites:
+            while site in negativeSites:
+                site = random.randint(0, len(solution) - 1)
+        print("Selected mutation site: %d" % site)
         val = solution[site]
         newVal = flipProvider(val)
         ret = solution[:]
@@ -175,14 +201,30 @@ class Selections:
 
     @staticmethod
     def rouletteWheel(population, fitnessFunction):
+        '''
+            Arguments:
+            population: Array<Solution>: size=N
+            fitnessFunction: function(Solution): Double
+
+            Returns:
+            Array<Solution>: size=N
+            randomly selected solutions from the given population based on a Roulette wheel 
+            with probability distribution on the fitness values returned by fitnessFunction
+        '''
+
+        # compute fitness of each solution in population
         fitnessArr = []
         for solution in population:
             fitness = fitnessFunction(solution)
             fitnessArr.append(fitness)
         popFitness = float(sum(fitnessArr))
+
+        # normalize fitnessArr
         normFitnessArr = map(lambda x: x / popFitness, fitnessArr)
         # print "normFit: %s" % str(normFitnessArr)
 
+        # compute cumulative normalized fitness values
+        # note that this is a strictly increasing array
         cumulative = 0
         normFitnessCumulativeArr = []
         for norm in normFitnessArr:
@@ -190,6 +232,11 @@ class Selections:
             normFitnessCumulativeArr.append(cumulative)
 
         # print "normCumFit: %s" % str(normFitnessCumulativeArr)
+
+        # Exactly N times (where N = len(population)), 
+        # generate a random integer between [0,1]
+        # find the index in normalized cumulative fitness array where the cumulative fitness exceeds the random number
+        # select and append the solution from population at the previous index
         ret = []
         for i in range(len(population)):
             spin = random.random()
