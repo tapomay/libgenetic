@@ -13,6 +13,7 @@ from libgenetic.libgenetic import EvolutionBasic, Selections, Crossovers, Mutati
 import numpy as np
 
 BASES_MAP = {0:'A', 1:'C', 2:'G', 3:'T'}
+BASE_ODDS_MAP = {'A':0.28, 'C': 0.22, 'G': 0.22, 'T': 0.28}
 
 class PWM:
     '''
@@ -187,9 +188,9 @@ class PWM:
         print(testScore)
         return pwm
 
-class EISpliceSitesGAModel:
+class EI5pSpliceSitesGAModel:
     '''
-        Wrapper for 5 prime splice site 9mers and PWM
+        Wrapper for 5 prime splice site 9mers with PWM score fitness
     '''
     @staticmethod
     def load_data_tsv(filename):
@@ -212,7 +213,7 @@ class EISpliceSitesGAModel:
 
     def _computePwm(self, nmerArr):
         symbolSet = set(['A', 'C', 'G', 'T'])
-        symbolOddsMap = {'A':0.28, 'C': 0.22, 'G': 0.22, 'T': 0.28}
+        symbolOddsMap = BASE_ODDS_MAP
         pwm = PWM(nmerArr, symbolSet, symbolOddsMap)
         return pwm
 
@@ -237,7 +238,7 @@ class EISpliceSitesGAModel:
         Return any random base other than given base
         '''
         randomBase = random.randint(0, 3)
-        flipValue = BASES_MAP[randomBase]
+        flipValue = BASES_MAP[randomBase] # BASES_MAP = {0:'A', 1:'C', 2:'G', 3:'T'}
         while flipValue == baseValue:
             randomBase = random.randint(0, 3)
             flipValue = BASES_MAP[randomBase]
@@ -246,10 +247,10 @@ class EISpliceSitesGAModel:
     def crossover(self, sol1, sol2):
         sol1Len = len(sol1)
         site = random.randint(1, sol1Len - 2)
-        # prevent crossover through GT at sites 3 and 4
-        negatives = [3, 4]
+        # prevent crossover through GT at sites 3, 4, first and last bases
+        negatives = [0, 3, 4, 8]
         while site in negatives:
-            site = random.randint(1, sol1Len - 2)
+            site = random.randint(0, sol1Len) 
         return Crossovers.two_point(sol1, sol2, site = site)
 
     def mutate(self, solution):
@@ -288,7 +289,7 @@ class GASpliceSitesThread(threading.Thread):
 
 def random5primeSpliceSitesPopulation(M, N, cardinality=4):
     randomgen = lambda: random.randint(0, cardinality - 1)
-    basesMap = BASES_MAP
+    basesMap = BASES_MAP # BASES_MAP = {0:'A', 1:'C', 2:'G', 3:'T'}
     ret = []
     for i in range(M):
         sol = []
@@ -303,64 +304,69 @@ def random5primeSpliceSitesPopulation(M, N, cardinality=4):
         ret.append(sol)
     return ret
 
-def check_match(population, ninemerData):
-    '''
-    Args:
-    population: candidate 9mers
-    ninemerData: training 9mers
-    Returns:
-        percent match of population in ninemerData
-    '''
-    ninemerStrData = ["".join(nm) for nm in ninemerData]
-    populationStrData = ["".join(nm) for nm in population]
-    ret = 0
-    for solution in populationStrData:
-        if solution in ninemerStrData:
-            ret += 1
+class MatchUtils:
 
-    ret /= float(len(populationStrData))
-    return ret
+    @staticmethod
+    def check_match(population, ninemerData):
+        '''
+        Args:
+        population: candidate 9mers
+        ninemerData: training 9mers
+        Returns:
+            percent match of population in ninemerData
+        '''
+        ninemerStrData = ["".join(nm) for nm in ninemerData]
+        populationStrData = ["".join(nm) for nm in population]
+        ret = 0
+        for solution in populationStrData:
+            if solution in ninemerStrData:
+                ret += 1
 
-def find_best_gens(gaBase):
-    genFitness = [gen._bestFitness for gen in gaBase._generations]
-    bestFitness_all = max(genFitness)
-    bestGenArr = filter(lambda g: g._bestFitness == bestFitness_all, gaBase._generations)
-    return bestGenArr
+        ret /= float(len(populationStrData))
+        return ret
 
-def match_stat(gaBase, authssData, cssData):
-    lastGen = gaBase._generations[-1]
-    bestGens = find_best_gens(gaBase)
-    # bestgen_scoreCss = [check_match(gen._population, cssData) for gen in bestGens]
-    # bestgen_scoreCss = max(bestgen_scoreCss)
-    # bestgen_scoreAuth = [check_match(gen._population, authssData) for gen in bestGens]
-    # bestgen_scoreAuth = max(bestgen_scoreAuth)
-    bestgen_scoreCss = -float('inf')
-    bestgen_scoreAuth = -float('inf')
-    bestgen_genCss = -1
-    bestgen_genAuth = -1
+    @staticmethod
+    def find_best_gens(gaBase):
+        genFitness = [gen._bestFitness for gen in gaBase._generations]
+        bestFitness_all = max(genFitness)
+        bestGenArr = filter(lambda g: g._bestFitness == bestFitness_all, gaBase._generations)
+        return bestGenArr
 
-    for gen in bestGens:
-        scoreCss = check_match(gen._population, cssData)
-        if scoreCss > bestgen_scoreCss:
-            bestgen_scoreCss = scoreCss
-            bestgen_genCss = gen._genIndex
-        scoreAuth = check_match(gen._population, authssData)
-        if scoreAuth > bestgen_scoreAuth:
-            bestgen_scoreAuth = scoreAuth
-            bestgen_genAuth = gen._genIndex
+    @staticmethod
+    def match_stat(gaBase, authssData, cssData):
+        lastGen = gaBase._generations[-1]
+        bestGens = MatchUtils.find_best_gens(gaBase)
+        # bestgen_scoreCss = [MatchUtils.check_match(gen._population, cssData) for gen in bestGens]
+        # bestgen_scoreCss = max(bestgen_scoreCss)
+        # bestgen_scoreAuth = [MatchUtils.check_match(gen._population, authssData) for gen in bestGens]
+        # bestgen_scoreAuth = max(bestgen_scoreAuth)
+        bestgen_scoreCss = -float('inf')
+        bestgen_scoreAuth = -float('inf')
+        bestgen_genCss = -1
+        bestgen_genAuth = -1
 
-    lastgen_scoreCss = check_match(lastGen._population, cssData)
-    lastgen_scoreAuth = check_match(lastGen._population, authssData)
-    return (bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth)
+        for gen in bestGens:
+            scoreCss = MatchUtils.check_match(gen._population, cssData)
+            if scoreCss > bestgen_scoreCss:
+                bestgen_scoreCss = scoreCss
+                bestgen_genCss = gen._genIndex
+            scoreAuth = MatchUtils.check_match(gen._population, authssData)
+            if scoreAuth > bestgen_scoreAuth:
+                bestgen_scoreAuth = scoreAuth
+                bestgen_genAuth = gen._genIndex
+
+        lastgen_scoreCss = MatchUtils.check_match(lastGen._population, cssData)
+        lastgen_scoreAuth = MatchUtils.check_match(lastGen._population, authssData)
+        return (bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth)
 
 def main(cssFile = 'data/dbass-prats/CrypticSpliceSite.tsv', 
     authssFile = 'data/hs3d/Exon-Intron_5prime/EI_true_9.tsv', 
     generationSize = 10, genCount = 10,
     crossoverProbability = 0.1, mutationProbability = 0.1):
-    cssGAData = EISpliceSitesGAModel.load_data_tsv(cssFile)
-    authssGAData = EISpliceSitesGAModel.load_data_tsv(authssFile)
-    cssGASpliceSites = EISpliceSitesGAModel(cssGAData)
-    authGASpliceSites = EISpliceSitesGAModel(authssGAData)
+    cssGAData = EI5pSpliceSitesGAModel.load_data_tsv(cssFile)
+    authssGAData = EI5pSpliceSitesGAModel.load_data_tsv(authssFile)
+    cssGASpliceSites = EI5pSpliceSitesGAModel(cssGAData)
+    authGASpliceSites = EI5pSpliceSitesGAModel(authssGAData)
 
     M = generationSize
     N = 9 # 9-mers
@@ -384,7 +390,7 @@ def main(cssFile = 'data/dbass-prats/CrypticSpliceSite.tsv',
     stats.append(['TRAINER', 'bestgen_scoreCss', 'bestgen_scoreAuth', 'bestgen_genCss', 'bestgen_genAuth', 'lastgen_scoreCss', 'lastgen_scoreAuth'])
     
     (bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth) = \
-        match_stat(cssGABase, authssGAData, cssGAData)
+        MatchUtils.match_stat(cssGABase, authssGAData, cssGAData)
     print("\nCSS GAStats:")
     print("BESTGEN: cssGen_X_cssData: %s" % str(bestgen_scoreCss))
     print("BESTGEN: cssGen_X_authData: %s" % str(bestgen_scoreAuth))
@@ -395,7 +401,7 @@ def main(cssFile = 'data/dbass-prats/CrypticSpliceSite.tsv',
     stats.append(['cssGABase', bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth])
 
     (bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth) = \
-        match_stat(authGABase, authssGAData, cssGAData)
+        MatchUtils.match_stat(authGABase, authssGAData, cssGAData)
     print("\nAUTH GAStats:")
     print("BESTGEN: authGen_X_cssData: %s" % str(bestgen_scoreCss))
     print("BESTGEN: authGen_X_authData: %s" % str(bestgen_scoreAuth))
