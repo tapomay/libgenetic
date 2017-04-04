@@ -1,0 +1,5 @@
+bs4
+requests
+httplib2
+futures
+lxml
