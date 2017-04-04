@@ -9,9 +9,10 @@ scoring
 import random
 import threading
 import time
-from .. import libgenetic
-from ..libgenetic.libgenetic import EvolutionBasic, Selections, Crossovers, Mutations, Generation, GABase
+from libgenetic.libgenetic import EvolutionBasic, Selections, Crossovers, Mutations, Generation, GABase
 import numpy as np
+
+BASES_MAP = {0:'A', 1:'C', 2:'G', 3:'T'}
 
 class PWM:
     '''
@@ -72,7 +73,7 @@ class PWM:
                 if sym in symIndex:
                     symRowIdx = symIndex.index(sym)
                 else:
-                    raise Exception("Unrecognized symbol in input: %s; symSet: %s" % (sym, symbolSet))
+                    raise Exception("Unrecognized symbol in input: %s; symSet: %s; row: %s" % (sym, symbolSet, str(row)))
 
                 retArr[symRowIdx][colIdx] = retArr[symRowIdx][colIdx] + 1
                 colIdx += 1
@@ -186,11 +187,10 @@ class PWM:
         print(testScore)
         return pwm
 
-class GASpliceSites:
+class EISpliceSitesGAModel:
     '''
-        Wrapper for splice site 9mers and PWM
+        Wrapper for 5 prime splice site 9mers and PWM
     '''
-    BASES_MAP = {0:'A', 1:'C', 2:'G', 3:'T'}
     @staticmethod
     def load_data_tsv(filename):
         '''
@@ -201,8 +201,9 @@ class GASpliceSites:
             content = f.read()
             lines = content.split('\n')
             for line in lines:
-                bases = line.split('\t')
-                ret.append(bases)
+                if line:
+                    bases = line.split('\t')
+                    ret.append(bases)
         return ret
 
     def __init__(self, nmerArr):
@@ -236,10 +237,10 @@ class GASpliceSites:
         Return any random base other than given base
         '''
         randomBase = random.randint(0, 3)
-        flipValue = GASpliceSites.BASES_MAP[randomBase]
+        flipValue = BASES_MAP[randomBase]
         while flipValue == baseValue:
             randomBase = random.randint(0, 3)
-            flipValue = GASpliceSites.BASES_MAP[randomBase]
+            flipValue = BASES_MAP[randomBase]
         return flipValue
 
     def crossover(self, sol1, sol2):
@@ -285,9 +286,9 @@ class GASpliceSitesThread(threading.Thread):
     def gaBase(self):
         return self._gaBase
 
-def randomSpliceSitesPopulation(M, N, cardinality=4):
+def random5primeSpliceSitesPopulation(M, N, cardinality=4):
     randomgen = lambda: random.randint(0, cardinality - 1)
-    basesMap = GASpliceSites.BASES_MAP
+    basesMap = BASES_MAP
     ret = []
     for i in range(M):
         sol = []
@@ -352,18 +353,18 @@ def match_stat(gaBase, authssData, cssData):
     lastgen_scoreAuth = check_match(lastGen._population, authssData)
     return (bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth)
 
-def main(cssFile = 'data/splicesite_data/CrypticSpliceSite.tsv', 
-    authssFile = 'data/splicesite_data/EI_true_9.tsv', 
+def main(cssFile = 'data/dbass-prats/CrypticSpliceSite.tsv', 
+    authssFile = 'data/hs3d/Exon-Intron_5prime/EI_true_9.tsv', 
     generationSize = 10, genCount = 10,
     crossoverProbability = 0.1, mutationProbability = 0.1):
-    cssGAData = GASpliceSites.load_data_tsv(cssFile)
-    authssGAData = GASpliceSites.load_data_tsv(authssFile)
-    cssGASpliceSites = GASpliceSites(cssGAData)
-    authGASpliceSites = GASpliceSites(authssGAData)
+    cssGAData = EISpliceSitesGAModel.load_data_tsv(cssFile)
+    authssGAData = EISpliceSitesGAModel.load_data_tsv(authssFile)
+    cssGASpliceSites = EISpliceSitesGAModel(cssGAData)
+    authGASpliceSites = EISpliceSitesGAModel(authssGAData)
 
     M = generationSize
     N = 9 # 9-mers
-    initPopulation = randomSpliceSitesPopulation(M, N)
+    initPopulation = random5primeSpliceSitesPopulation(M, N)
     print(initPopulation)
 
     authThread = GASpliceSitesThread(authGASpliceSites, initPopulation, genCount = genCount,
@@ -411,14 +412,15 @@ def main(cssFile = 'data/splicesite_data/CrypticSpliceSite.tsv',
 
 if __name__ == '__main__':
 
+    import os
     import argparse
     parser = argparse.ArgumentParser(description='libgenetic implementation for Splice Site evolution using PWM')
     parser.add_argument('--gen_count', type=int, help='generation count', required=True)
     parser.add_argument('--gen_size', type=int, help='generation size', required=True)
     parser.add_argument('--xover_prob', type=float, help='crossover probability', default=0.1)
     parser.add_argument('--mut_prob', type=float, help='mutation probability', default=0.1)
-    parser.add_argument('--css_file', help='path to css tsv data file', default='data/splicesite_data/CrypticSpliceSite.tsv')
-    parser.add_argument('--authss_file', help='path to authss tsv data file', default='data/splicesite_data/EI_true_9.tsv')
+    parser.add_argument('--css_file', help='path to css tsv data file', default='%s/data/dbass-prats/CrypticSpliceSite.tsv' % os.getcwd())
+    parser.add_argument('--authss_file', help='path to authss tsv data file', default='%s/data/hs3d/Exon-Intron_5prime/EI_true_9.tsv' % os.getcwd())
     args = parser.parse_args()
 
     main(cssFile = args.css_file, authssFile = args.authss_file, 
