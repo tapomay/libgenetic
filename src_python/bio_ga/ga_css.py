@@ -9,7 +9,8 @@ scoring
 import random
 import threading
 import time
-from libgenetic import EvolutionBasic, Selections, Crossovers, Mutations, Generation, GABase
+from .. import libgenetic
+from ..libgenetic.libgenetic import EvolutionBasic, Selections, Crossovers, Mutations, Generation, GABase
 import numpy as np
 
 class PWM:
@@ -146,6 +147,41 @@ class PWM:
         print(pwm.pwmMatrix)
 
         testSolution = "CTGGTAAGT"
+        testScore = pwm.score(testSolution)
+        print(testScore)
+        return pwm
+
+    @staticmethod
+    def testSelf_3prime():
+        dataArr=[
+            ['C', 'T', 'G', 'G', 'T', 'A', 'A', 'G', 'T', 'A', 'A', 'G', 'T'],
+            ['C', 'A', 'A', 'G', 'T', 'A', 'A', 'G', 'T', 'A', 'A', 'G', 'T'],
+            ['A', 'A', 'G', 'G', 'T', 'A', 'T', 'A', 'T', 'A', 'A', 'G', 'T'],
+            ['A', 'G', 'T', 'G', 'T', 'A', 'A', 'G', 'T', 'A', 'A', 'G', 'T'],
+            ['T', 'T', 'G', 'G', 'T', 'A', 'A', 'A', 'A', 'A', 'A', 'G', 'T'],
+            ['T', 'G', 'G', 'G', 'T', 'A', 'A', 'G', 'G', 'A', 'A', 'G', 'T'],
+            ['C', 'A', 'G', 'G', 'T', 'G', 'A', 'G', 'T', 'A', 'A', 'G', 'T'],
+            ['A', 'G', 'G', 'G', 'T', 'A', 'A', 'T', 'G', 'A', 'A', 'G', 'T'],
+            ['T', 'A', 'G', 'G', 'T', 'A', 'T', 'T', 'G', 'A', 'A', 'G', 'T'],
+            ['C', 'A', 'G', 'G', 'T', 'A', 'A', 'A', 'A', 'A', 'A', 'G', 'T'],
+            ['A', 'A', 'G', 'G', 'T', 'G', 'T', 'G', 'T', 'A', 'A', 'G', 'T'],
+            ['A', 'A', 'G', 'G', 'T', 'A', 'A', 'G', 'A', 'A', 'A', 'G', 'T'],
+            ['T', 'A', 'G', 'G', 'T', 'A', 'A', 'T', 'A', 'A', 'A', 'G', 'T'],
+            ['T', 'T', 'T', 'G', 'T', 'G', 'A', 'G', 'T', 'A', 'A', 'G', 'T'],
+            ['C', 'A', 'G', 'G', 'T', 'A', 'T', 'A', 'C', 'A', 'A', 'G', 'T'],
+            ['T', 'C', 'T', 'G', 'T', 'A', 'A', 'G', 'T', 'A', 'A', 'G', 'T'],
+            ['G', 'A', 'G', 'G', 'T', 'A', 'A', 'G', 'T', 'A', 'A', 'G', 'T'],
+            ['A', 'A', 'G', 'G', 'T', 'A', 'A', 'A', 'G', 'A', 'A', 'G', 'T'],
+            ['C', 'A', 'G', 'G', 'T', 'A', 'A', 'G', 'A', 'A', 'A', 'G', 'T'],
+            ['A', 'C', 'A', 'G', 'T', 'A', 'A', 'G', 'T', 'A', 'A', 'G', 'T'],
+            ['A', 'T', 'G', 'G', 'T', 'A', 'A', 'G', 'G', 'A', 'A', 'G', 'T']
+        ]
+        symbolSet = set(['A', 'C', 'G', 'T'])
+        symbolOddsMap = {'A':0.28, 'C': 0.22, 'G': 0.22, 'T': 0.28}
+        pwm = PWM(dataArr, symbolSet, symbolOddsMap)
+        print(pwm.pwmMatrix)
+
+        testSolution = "CTGGTAAGTAAGT"
         testScore = pwm.score(testSolution)
         print(testScore)
         return pwm
