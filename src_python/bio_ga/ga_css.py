@@ -1,5 +1,5 @@
 '''
-create pwmCss, pwmNbrng
+create pwmCss, pwmAuth
 define fitness
 initPopulation as randomized
 scoring
@@ -363,6 +363,11 @@ def main(cssFile = 'data/dbass-prats/CrypticSpliceSite.tsv',
     authssFile = 'data/hs3d/Exon-Intron_5prime/EI_true_9.tsv', 
     generationSize = 10, genCount = 10,
     crossoverProbability = 0.1, mutationProbability = 0.1):
+    '''
+        Compare AuthPWMGA <-> CSSPWMGA
+        AuthPWMGA genN should predominantly carry stochastic properties of authentic SS data
+        CSSPWMGA genN should predominantly carry stochastic properties of cryptic SS data
+    '''
     cssGAData = EI5pSpliceSitesGAModel.load_data_tsv(cssFile)
     authssGAData = EI5pSpliceSitesGAModel.load_data_tsv(authssFile)
     cssGASpliceSites = EI5pSpliceSitesGAModel(cssGAData)
@@ -423,7 +428,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='libgenetic implementation for Splice Site evolution using PWM')
     parser.add_argument('--gen_count', type=int, help='generation count', required=True)
     parser.add_argument('--gen_size', type=int, help='generation size', required=True)
-    parser.add_argument('--xover_prob', type=float, help='crossover probability', default=0.1)
+    parser.add_argument('--xover_prob', type=float, help='crossover probability', default=0.7)
     parser.add_argument('--mut_prob', type=float, help='mutation probability', default=0.1)
     parser.add_argument('--css_file', help='path to css tsv data file', default='%s/data/dbass-prats/CrypticSpliceSite.tsv' % os.getcwd())
     parser.add_argument('--authss_file', help='path to authss tsv data file', default='%s/data/hs3d/Exon-Intron_5prime/EI_true_9.tsv' % os.getcwd())
