@@ -29,6 +29,7 @@ binrayCondition : <Solution>: Boolean
 
 '''
 import random
+import numpy as np
 
 class Generation:
     
@@ -158,8 +159,13 @@ def f_to_intarr(fname):
 
 class Crossovers:
 
+    '''
+    All crossover methods should satisfy the following signature:
+     fn_name(parent1, parent2, site = None): returns (child1, child2)
+
+    '''
     @staticmethod
-    def two_point(parent1, parent2, site = None):
+    def one_point(parent1, parent2, site = None):
         parent1Len = len(parent1)
         if len(parent1) != len(parent2):
             raise Exception("Incompatible lengths: parent1: %d vz parent2: %d" % (len(parent1), len(parent2)))
@@ -172,6 +178,31 @@ class Crossovers:
         child1 = parent1[0:site] + p2_sub
         child2 = parent2[0:site] + p1_sub
         return (child1, child2)
+
+    @staticmethod
+    def two_point(parent1, parent2, site = None):
+        parent1Len = len(parent1)
+        if len(parent1) != len(parent2):
+            raise Exception("Incompatible lengths: parent1: %d vz parent2: %d" % (len(parent1), len(parent2)))
+
+        if not site:
+            site = pick_random_site(parent1Len)
+        print("Selected Xover site: %d" % site)
+        p1_sub = parent1[site:]
+        p2_sub = parent2[site:]
+        child1 = parent1[0:site] + p2_sub
+        child2 = parent2[0:site] + p1_sub
+        return (child1, child2)
+
+    @staticmethod
+    def pick_random_site(range = 9, negativeSites = []):
+        if range < 3:
+            raise Exception("Invalid usage: range should be atleast 3")
+        site = random.randint(1, range - 2)
+        if negativeSites:
+            while site in negativeSites:
+                site = random.randint(1, range - 2)
+        return site
 
 class Mutations:
     @staticmethod
@@ -209,6 +240,7 @@ class Selections:
             Returns:
             Array<Solution>: size=N
             randomly selected solutions from the given population based on a Roulette wheel 
+            the roulette wheel is scaled to the worst fitness
             with probability distribution on the fitness values returned by fitnessFunction
         '''
 
@@ -217,6 +249,10 @@ class Selections:
         for solution in population:
             fitness = fitnessFunction(solution)
             fitnessArr.append(fitness)
+        minFitness = min(fitnessArr)
+        # print fitnessArr
+        fitnessArr = np.divide(fitnessArr, float(minFitness)) #scaling fitness values
+        # print fitnessArr
         popFitness = float(sum(fitnessArr))
 
         # normalize fitnessArr
@@ -233,7 +269,7 @@ class Selections:
 
         # print "normCumFit: %s" % str(normFitnessCumulativeArr)
 
-        # Exactly N times (where N = len(population)), 
+        # Exactly N times (where N = len(population)),
         # generate a random integer between [0,1]
         # find the index in normalized cumulative fitness array where the cumulative fitness exceeds the random number
         # select and append the solution from population at the previous index
@@ -248,6 +284,80 @@ class Selections:
                     break
         return ret
 
+    @staticmethod
+    def ranked(population, fitnessFunction):
+        '''
+            Arguments:
+            population: Array<Solution>: size=N
+            fitnessFunction: function(Solution): Double
+
+            Returns:
+            Array<Solution>: size=N
+        '''
+
+        # compute fitness of each solution in population
+        fitnessTupleArr = []
+        for solution in population:
+            fitness = fitnessFunction(solution)
+            fitnessTupleArr.append((solution, fitness))
+        # print fitnessTupleArr
+        fitnessTupleArrSorted = sorted(fitnessTupleArr, reverse=True, key = lambda x:x[1]) # sort by fitness
+        # print fitnessTupleArrSorted
+
+
+        popFitness = float(sum([x[1] for x in fitnessTupleArrSorted]))
+
+        # normalize fitnessArr
+        normFitnessTupArr = map(lambda x: (x[0], x[1] / popFitness), fitnessTupleArrSorted)
+        # print "normFit: %s" % str(normFitnessTupArr)
+
+        # compute cumulative normalized fitness values
+        # note that this is a strictly increasing array
+        cumulative = 0
+        normFitnessCumulativeArr = []
+        for norm in normFitnessTupArr:
+            cumulative = cumulative + norm[1]
+            normFitnessCumulativeArr.append(cumulative)
+
+        # print "normCumFit: %s" % str(normFitnessCumulativeArr)
+
+        # Exactly N times (where N = len(population)),
+        # generate a random integer between [0,1]
+        # find the index in normalized cumulative fitness array where the cumulative fitness exceeds the random number
+        # select and append the solution from population at the previous index
+        ret = []
+        for i in range(len(population)):
+            spin = random.random()
+            # print "spin: %f" % spin
+            for j in range(1, len(normFitnessCumulativeArr)):
+                if spin < normFitnessCumulativeArr[j]:
+                    # print "Select: %d, pop: %s, normCumFitness: %f" % (j-1, population[j-1], normFitnessCumulativeArr[j-1])
+                    ret.append(fitnessTupleArrSorted[j-1][0])
+                    break
+        return ret
+
+    @staticmethod
+    def tournament(population, fitnessFunction, s=2):
+        '''
+            Arguments:
+            population: Array<Solution>: size=N
+            fitnessFunction: function(Solution): Double
+
+            Returns:
+            Array<Solution>: size=N
+        '''
+        # for each m:
+        #   select s individuals : generate s random indicies in range(m)
+        #   add the fittest individual to selection
+        ret = []
+        m = len(population)
+        for idx in range(m):
+            compete = random.sample(population, s)
+            competeFitness = [fitnessFunction(individual) for individual in compete]
+            winnerIdx = np.argmax(competeFitness)
+            winner = compete[winnerIdx]
+            ret.append(winner)
+        return ret
 
 class GAKnapsack:
 
