@@ -35,7 +35,7 @@ class GAKnapsack:
 
     def fitness(self, solutionArr):
         if len(solutionArr) != self._N:
-            raise Exception("dimension mismatch")
+            raise Exception("dimension mismatch: %s" % solutionArr)
         indices = range(self._N)
         profits = [self._profits[i] for i in indices if solutionArr[i] == 1]
         profits = sum(profits)
@@ -78,7 +78,7 @@ def randomPopulation(M, N, cardinality=2):
     return ret
 
 def main():
-    M = 20
+    M = 10
     N = 10
     initPopulation = randomPopulation(M, N, 2)
     knapsack = GAKnapsack.loadProblem(p_file = 'data/knapsack/p01_p.txt', w_file = 'data/knapsack/p01_w.txt', 

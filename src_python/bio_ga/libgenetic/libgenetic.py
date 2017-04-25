@@ -180,29 +180,49 @@ class Crossovers:
         return (child1, child2)
 
     @staticmethod
-    def two_point(parent1, parent2, site = None):
-        parent1Len = len(parent1)
+    def two_point(parent1, parent2, site1 = None, site2 = None):
+        parentLen = len(parent1)
         if len(parent1) != len(parent2):
             raise Exception("Incompatible lengths: parent1: %d vz parent2: %d" % (len(parent1), len(parent2)))
 
-        if not site:
-            site = Crossovers.pick_random_site(parent1Len)
-        print("Selected Xover site: %d" % site)
-        p1_sub = parent1[site:]
-        p2_sub = parent2[site:]
-        child1 = parent1[0:site] + p2_sub
-        child2 = parent2[0:site] + p1_sub
+        if not site1:
+            site1 = Crossovers.pick_random_site(parentLen)
+        
+        if not site2:
+            site2 = Crossovers.pick_random_site(parentLen, negativeSites=[site1])
+
+        site1, site2 = sorted((site1, site2))
+        print("Selected Xover site1: %d, site2: %d" % (site1, site2))
+        p1_sub = parent1[site1:site2+1]
+        p2_sub = parent2[site1:site2+1]
+        child1 = parent1[0:site1] + p2_sub + parent1[site2+1:]
+        child2 = parent2[0:site1] + p1_sub + parent2[site2+1:]
         return (child1, child2)
 
     @staticmethod
-    def pick_random_site(range = 9, negativeSites = []):
+    def pick_random_site(rangeLen = 9, negativeSites = [], maxIters = 100):
+        '''
+            Selects an index between 1 and rangeLen - 2 inclusive excpet the indices in negativeSites
+            maxIters is an operational parameters to retry random index generation until the above condition is satisfied
+            if retries reach maxIters iterations, an exception is thrown
+        '''
         if range < 3:
             raise Exception("Invalid usage: range should be atleast 3")
-        site = random.randint(1, range - 2)
+        site = random.randint(1, rangeLen - 2)
         if negativeSites:
-            while site in negativeSites:
-                site = random.randint(1, range - 2)
+            negativeSitesCover = set(range(rangeLen)).difference(negativeSites)
+            # print("negativeSitesCover: %s" % negativeSitesCover)
+            if len(negativeSitesCover) == 0:
+                raise Exception("Invalid input - no pick possible: negativeSites (%s) covers the entire given range: %d" % (str(negativeSites), rangeLen))
+            iter = 0
+            while site in negativeSites and iter < maxIters:
+                site = random.randint(1, rangeLen - 2)
+                iter += 1
+            if iter == maxIters:
+                raise Exception("pick_random_site: Reached maxIters: %d" % maxIters)
         return site
+
+
 
 class Mutations:
     @staticmethod

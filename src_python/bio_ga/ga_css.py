@@ -73,14 +73,25 @@ class EI5pSpliceSitesGAModel:
             flipValue = BASES_MAP[randomBase]
         return flipValue
 
-    def crossover(self, sol1, sol2):
+    def crossover_1p(self, sol1, sol2):
         sol1Len = len(sol1)
         site = random.randint(1, sol1Len - 2)
         # prevent crossover through GT at sites 3, 4, first and last bases
-        negatives = [0, 3, 4, 8]
-        while site in negatives:
-            site = random.randint(0, sol1Len) 
-        return Crossovers.two_point(sol1, sol2, site = site)
+        negatives = [3, 4]
+        site = Crossovers.pick_random_site(rangeLen = 9, negativeSites = negatives)
+        ret = Crossovers.one_point(sol1, sol2, site = site)
+        return ret
+
+    def crossover_2p(self, sol1, sol2):
+        sol1Len = len(sol1)
+        site = random.randint(1, sol1Len - 2)
+        # prevent crossover through GT at sites 3, 4, first and last bases
+        negatives = [3, 4]
+        site1 = Crossovers.pick_random_site(rangeLen = 9, negativeSites = negatives) 
+        negatives = negatives + [site1]
+        site2 = Crossovers.pick_random_site(rangeLen = 9, negativeSites = negatives) 
+        ret = Crossovers.two_point(sol1, sol2, site1 = site1, site2 = site2)
+        return ret
 
     def mutate(self, solution):
         return Mutations.provided_flip(solution = solution, flipProvider = self.baseFlip, negativeSites = [3,4])
@@ -103,7 +114,7 @@ class GASpliceSitesThread(threading.Thread):
     def run(self):
         gen0 = Generation(self._initPopulation)
         recombine = lambda population: Selections.ranked(population, self._gASpliceSites.fitness)
-        crossover = self._gASpliceSites.crossover
+        crossover = self._gASpliceSites.crossover_1p
         mutator = self._gASpliceSites.mutate
         evolution = EvolutionBasic(select = recombine, crossover = crossover, mutate = mutator,
             crossoverProbability = self._crossoverProbability, 
