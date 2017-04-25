@@ -4,8 +4,8 @@ from collections import OrderedDict
 import ga_css_3prime as ga
 
 generationSizes = [10, 50]
-genCounts = [10, 20, 30]
-# genCounts = [10, 20, 30, 40, 50, 100, 500, 1000]
+# genCounts = [10, 20, 30]
+genCounts = [10, 20, 30, 40, 50, 100, 500, 1000]
 
 statsMap = OrderedDict()
 for s in generationSizes:

@@ -36,9 +36,21 @@ class EI5pSpliceSitesGAModel:
                     ret.append(bases)
         return ret
 
+    @staticmethod
+    def mergeSSData(data1, data2):
+        npdata1 = np.array(data1)
+        npdata2 = np.array(data2)
+        retnp = np.concatenate((npdata1, npdata2))
+        ret = retnp.tolist()
+        return ret
+
     def __init__(self, nmerArr):
         self._nmerArr = nmerArr
         self._pwm = self._computePwm(nmerArr)
+
+    @property
+    def rawdata(self):
+        return self._nmerArr
 
     def _computePwm(self, nmerArr):
         symbolSet = set(['A', 'C', 'G', 'T'])
@@ -73,7 +85,8 @@ class EI5pSpliceSitesGAModel:
             flipValue = BASES_MAP[randomBase]
         return flipValue
 
-    def crossover_1p(self, sol1, sol2):
+    @staticmethod
+    def crossover_1p(sol1, sol2):
         sol1Len = len(sol1)
         site = random.randint(1, sol1Len - 2)
         negatives = [3, 4] # prevent crossover through GT at sites 3, 4, first and last bases
@@ -81,7 +94,8 @@ class EI5pSpliceSitesGAModel:
         ret = Crossovers.one_point(sol1, sol2, site = site)
         return ret
 
-    def crossover_2p(self, sol1, sol2):
+    @staticmethod
+    def crossover_2p(sol1, sol2):
         sol1Len = len(sol1)
         site = random.randint(1, sol1Len - 2)
         negatives = [3, 4] # prevent crossover through GT at sites 3, 4, first and last bases
@@ -91,11 +105,11 @@ class EI5pSpliceSitesGAModel:
         ret = Crossovers.two_point(sol1, sol2, site1 = site1, site2 = site2)
         return ret
 
-    def crossover_uniform(self, sol1, sol2, swap_prob = 0.5):
+    @staticmethod
+    def crossover_uniform(sol1, sol2, swap_prob = 0.5):
         negatives = [3, 4] # prevent crossover through GT at sites 3, 4, first and last bases
         ret = Crossovers.uniform(sol1, sol2, swap_prob = swap_prob, negativeSites = negatives)
         return ret
-
 
     def mutate(self, solution):
         return Mutations.provided_flip(solution = solution, flipProvider = self.baseFlip, negativeSites = [3,4])
@@ -105,25 +119,33 @@ class EI5pSpliceSitesGAModel:
         # return "P: %s\nW: %s\nC: %s\nS: %s" % (str(self._profits), str(self._weights), str(self._capacity), str(self._solution))
 
 class GASpliceSitesThread(threading.Thread):
-    def __init__(self, gASpliceSites, initPopulation, genCount,
+    def __init__(self, gaModel, initPopulation, genCount, crossover = None, recombine = None,
         crossoverProbability = 0.1, mutationProbability = 0.1):
         threading.Thread.__init__(self)
-        self._gASpliceSites = gASpliceSites
+        self._gaModel = gaModel
         self._initPopulation = initPopulation
         self._genCount = genCount
         self._crossoverProbability = crossoverProbability
         self._mutationProbability = mutationProbability
+        self._crossover = crossover
+        if not crossover:
+            self._crossover = EI5pSpliceSitesGAModel.crossover_1p
+
+        self._recombine = recombine
+        if not recombine:
+            self._recombine = lambda population: Selections.ranked(population, self._gaModel.fitness)
+        
         self._gaBase = None
 
     def run(self):
         gen0 = Generation(self._initPopulation)
-        recombine = lambda population: Selections.ranked(population, self._gASpliceSites.fitness)
-        crossover = self._gASpliceSites.crossover_uniform
-        mutator = self._gASpliceSites.mutate
+        recombine = self._recombine
+        crossover = self._crossover
+        mutator = self._gaModel.mutate
         evolution = EvolutionBasic(select = recombine, crossover = crossover, mutate = mutator,
             crossoverProbability = self._crossoverProbability, 
             mutationProbability = self._mutationProbability)
-        gaBase = GABase(evolution, gen0, self._gASpliceSites.fitness)
+        gaBase = GABase(evolution, gen0, self._gaModel.fitness)
         gaBase.execute(maxGens=self._genCount)
         self._gaBase = gaBase
 
@@ -202,6 +224,47 @@ class MatchUtils:
         lastgen_scoreCss = MatchUtils.check_match(lastGen._population, cssData)
         lastgen_scoreAuth = MatchUtils.check_match(lastGen._population, authssData)
         return (bestgen_scoreCss, bestgen_scoreAuth, bestgen_genCss, bestgen_genAuth, lastgen_scoreCss, lastgen_scoreAuth)
+
+    @staticmethod
+    def match_stat_2d(gaBase, selfData, competeData):
+        bestGens = MatchUtils.find_best_gens(gaBase)
+        bestgen_scoreSelf = -float('inf')
+        bestgen_scoreCompete = -float('inf')
+        bestgen_genSelf = -1
+        bestgen_genCompete = -1
+
+        for gen in bestGens:
+            scoreCompete = MatchUtils.check_match(gen._population, competeData)
+            if scoreCompete > bestgen_scoreCompete:
+                bestgen_scoreCompete = scoreCompete
+                bestgen_genCompete = gen._genIndex
+            
+            scoreSelf = MatchUtils.check_match(gen._population, selfData)
+            if scoreSelf > bestgen_scoreSelf:
+                bestgen_scoreSelf = scoreSelf
+                bestgen_genSelf = gen._genIndex
+
+        bestgen_scoreCompete = 1 - bestgen_scoreCompete #invert compete score
+        retFitness = None
+        if bestGens:
+            retFitness = bestGens[0]._bestFitness
+        return ((bestgen_scoreSelf, bestgen_scoreCompete), (bestgen_genSelf, bestgen_genCompete), retFitness)
+
+    @staticmethod
+    def match_stat_1d(gaBase, ssData):
+        bestGens = MatchUtils.find_best_gens(gaBase)
+        bestgen_score = -float('inf')
+        bestgen_gen = -1
+
+        for gen in bestGens:
+            score = MatchUtils.check_match(gen._population, ssData)
+            if score > bestgen_score:
+                bestgen_score = score
+                bestgen_gen = gen._genIndex
+        retFitness = None
+        if bestGens:
+            retFitness = bestGens[0]._bestFitness
+        return (bestgen_score, bestgen_gen, retFitness)
 
 def main(cssFile = 'data/dbass-prats/CrypticSpliceSite.tsv', 
     authssFile = 'data/hs3d/Exon-Intron_5prime/EI_true_9.tsv', 

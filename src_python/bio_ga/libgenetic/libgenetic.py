@@ -37,8 +37,8 @@ class Generation:
         self._population = population
         self._genIndex = genIndex
         self._fitness = fitness
-        self._bestFitness = None
-        self._bestSolution = None
+        self._bestFitness = None #computed in execute
+        self._bestSolution = None #computed in execute
         self._matingPool = None
         self._xover = None
 
@@ -76,7 +76,7 @@ class EvolutionBasic:
         randomXoverCount = int(self._crossoverProbability * totalPairs)
         if randomXoverCount == 0:
             randomXoverCount = 1
-        print("randomXoverCount: %d" % randomXoverCount)
+        # print("randomXoverCount: %d" % randomXoverCount)
         for i in range(randomXoverCount):
             sol1, sol1Idx = pickSolution(matingPool, indices)
             sol2, sol2Idx = pickSolution(matingPool, indices)
@@ -102,7 +102,7 @@ class EvolutionBasic:
         mutateCount = int(self._mutationProbability * len(indices))
         if mutateCount == 0:
             mutateCount = 1
-        print("mutateCount: %d" % mutateCount)
+        # print("mutateCount: %d" % mutateCount)
         for i in range(mutateCount):
             solIdx = pickIdx(indices)
             ret[solIdx] = self._mutate(recombinedPool[solIdx])
@@ -145,7 +145,7 @@ class GABase:
                 newGen._fitness = [self._fitnessFunction(solution) for solution in newGen._population]
                 newGen._bestFitness = max(newGen._fitness)
                 newGen._bestSolution = newGen._population[newGen._fitness.index(newGen._bestFitness)]
-                print(newGen)
+                # print(newGen)
                 self._generations.append(newGen)
 
 def f_to_intarr(fname):
@@ -172,7 +172,7 @@ class Crossovers:
 
         if not site:
             site = random.randint(1, parent1Len - 2)
-        print("Selected Xover site: %d" % site)
+        # print("Selected Xover site: %d" % site)
         p1_sub = parent1[site:]
         p2_sub = parent2[site:]
         child1 = parent1[0:site] + p2_sub
@@ -192,7 +192,7 @@ class Crossovers:
             site2 = Crossovers.pick_random_site(parentLen, negativeSites=[site1])
 
         site1, site2 = sorted((site1, site2))
-        print("Selected Xover site1: %d, site2: %d" % (site1, site2))
+        # print("Selected Xover site1: %d, site2: %d" % (site1, site2))
         p1_sub = parent1[site1:site2+1]
         p2_sub = parent2[site1:site2+1]
         child1 = parent1[0:site1] + p2_sub + parent1[site2+1:]
@@ -241,7 +241,7 @@ class Crossovers:
             In uniform order-based crossover, two parents (say P 1 and P 2 ) are randomly sel-
             ected and a random binary template is generated (see Fig. 4.2). Some of the genes
             for offspring C 1 are filled by taking the genes from parent P 1 where there is a one
-            in the template. At this point we have C 1 partially filled, but it has some “gaps”.
+            in the template. At this point we have C 1 partially filled, but it has some "gaps".
             The genes of parent P 1 in the positions corresponding to zeros in the template
             are taken and sorted in the same order as they appear in parent P 2.
         '''
@@ -295,7 +295,7 @@ class Mutations:
     @staticmethod
     def bool_flip(solution):
         site = random.randint(0, len(solution) - 1)
-        print("Selected mutation site: %d" % site)
+        # print("Selected mutation site: %d" % site)
         val = solution[site]
         val = abs(1 - val)
         ret = solution[:]
@@ -308,7 +308,7 @@ class Mutations:
         if negativeSites:
             while site in negativeSites:
                 site = random.randint(0, len(solution) - 1)
-        print("Selected mutation site: %d" % site)
+        # print("Selected mutation site: %d" % site)
         val = solution[site]
         newVal = flipProvider(val)
         ret = solution[:]

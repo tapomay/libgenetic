@@ -4,7 +4,7 @@ import threading
 import time
 from libgenetic.libgenetic import EvolutionBasic, Selections, Crossovers, Mutations, Generation, GABase
 import numpy as np
-from ga_css import EI5pSpliceSitesGAModel, GASpliceSitesThread, MatchUtils, PWM, BASES_MAP, BASE_ODDS_MAP
+from ga_css_5prime import EI5pSpliceSitesGAModel, GASpliceSitesThread, MatchUtils, PWM, BASES_MAP, BASE_ODDS_MAP
 
 class IE3pSpliceSitesGAModel(EI5pSpliceSitesGAModel):
     '''
