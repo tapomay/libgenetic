@@ -222,6 +222,73 @@ class Crossovers:
                 raise Exception("pick_random_site: Reached maxIters: %d" % maxIters)
         return site
 
+    @staticmethod
+    def uniform(parent1, parent2, negativeSites = [], swap_prob = 0.5):
+        parentLen = len(parent1)
+        child1 = parent1[:]
+        child2 = parent2[:]
+        for idx in range(parentLen):
+            spin = random.random()
+            if spin > 0.5 and idx not in negativeSites: # perform allele swap at idx
+                # print("U-Xover: idx: %d" % idx)
+                Crossovers.swap(child1, child2, idx)
+        return (child1, child2)
+
+    @staticmethod
+    def uniform_orederbased(parent1, parent2, negativeSites = [], swap_prob = 0.5):
+        '''
+            Permutation sensitive:
+            In uniform order-based crossover, two parents (say P 1 and P 2 ) are randomly sel-
+            ected and a random binary template is generated (see Fig. 4.2). Some of the genes
+            for offspring C 1 are filled by taking the genes from parent P 1 where there is a one
+            in the template. At this point we have C 1 partially filled, but it has some “gaps”.
+            The genes of parent P 1 in the positions corresponding to zeros in the template
+            are taken and sorted in the same order as they appear in parent P 2.
+        '''
+        parentLen = len(parent1)
+        child1 = parent1[:]
+        child2 = parent2[:]
+        raise Exception("Not yet implemented")
+
+    @staticmethod
+    def orederbased(parent1, parent2, negativeSites = [], swap_prob = 0.5):
+        '''
+            Permutation sensitive:
+        '''
+        parentLen = len(parent1)
+        child1 = parent1[:]
+        child2 = parent2[:]
+        raise Exception("Not yet implemented")
+
+    @staticmethod
+    def partially_matched(parent1, parent2, negativeSites = [], swap_prob = 0.5):
+        '''
+            Permutation sensitive:
+            Alleles within the two crossover sites of a par-
+            ent are exchanged with the alleles corresponding to those mapped by the other
+            parent.
+        '''
+        parentLen = len(parent1)
+        child1 = parent1[:]
+        child2 = parent2[:]
+        raise Exception("Not yet implemented")
+
+    @staticmethod
+    def cycle(parent1, parent2, negativeSites = [], swap_prob = 0.5):
+        '''
+            Permutation sensitive:
+        '''
+        parentLen = len(parent1)
+        child1 = parent1[:]
+        child2 = parent2[:]
+        raise Exception("Not yet implemented")
+
+
+    @staticmethod
+    def swap(arr1, arr2, idx):
+        tmp = arr1[idx]
+        arr1[idx] = arr2[idx]
+        arr2[idx] = arr1[idx]
 
 
 class Mutations:
