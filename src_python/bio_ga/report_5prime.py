@@ -115,7 +115,7 @@ def execute(selection_selector, xover, dataspecs):
 				graph : specGABaseBest.generations -> specGABaseBest.fitness
 	'''
 	generationSizes = [10, 20]
-	generationCounts = [10, 20, 50, 100, 1000]
+	generationCounts = [10, 100, 1000]
 	runCount = 100
 	execStat = {}
 	for gensize in generationSizes:
@@ -174,5 +174,8 @@ def main():
 
 	return perfMap
 
+
 if __name__ == '__main__':
-	main()
+	perfMap = main()
+	stat = perfMap[('rouletteWheel', 'crossover_1p')][(10, 10, 'auth')]
+	print("('rouletteWheel', 'crossover_1p') / (10, 10, 'auth'): (stat.scoreCompeteHisto: %s, stat.scoreCompeteMean: %s, stat.scoreSelfHisto: %s, stat.scoreSelfMean: %s, stat.scoreFitnessHisto: %s, stat.scoreFitnessMean: %s)" % (stat.scoreCompeteHisto, stat.scoreCompeteMean, stat.scoreSelfHisto, stat.scoreSelfMean, stat.scoreFitnessHisto, stat.scoreFitnessMean))
