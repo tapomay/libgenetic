@@ -298,10 +298,12 @@ def main(cssFile = 'data/dbass-prats/CrypticSpliceSite.tsv',
     crossover_provider = lambda gaModel: EI5pSpliceSitesGAModel.crossover_uniform_orderbased
 
     authThread = GASpliceSitesThread(authGASpliceSites, initPopulation, genCount = genCount,
-        crossoverProbability = 0.1, mutationProbability = 0.1, recombine_provider = recombine_provider,
+        crossoverProbability = crossoverProbability, mutationProbability = mutationProbability, 
+        recombine_provider = recombine_provider,
         crossover_provider = crossover_provider)
     cssThread = GASpliceSitesThread(cssGASpliceSites, initPopulation, genCount = genCount,
-        crossoverProbability = 0.1, mutationProbability = 0.1, recombine_provider = recombine_provider,
+        crossoverProbability = crossoverProbability, mutationProbability = mutationProbability, 
+        recombine_provider = recombine_provider,
         crossover_provider = crossover_provider)
 
     cssThread.start()

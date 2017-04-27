@@ -37,11 +37,43 @@ class IE3pSpliceSitesGAModel(EI5pSpliceSitesGAModel):
     def crossover(self, sol1, sol2):
         sol1Len = len(sol1)
         site = random.randint(1, sol1Len - 2)
-        # prevent crossover through GT at sites 10, 11, first and last bases
+        # prevent crossover through AG at sites 10, 11, first and last bases
         negatives = [10, 11, 0, 12]
         while site in negatives:
             site = random.randint(0, sol1Len)
         return Crossovers.two_point(sol1, sol2, site = site)
+
+    @staticmethod
+    def crossover_1p(sol1, sol2):
+        sol1Len = len(sol1)
+        site = random.randint(1, sol1Len - 2)
+        negatives = [10, 11] # prevent crossover through AG at sites 10, 11
+        site = Crossovers.pick_random_site(rangeLen = 13, negativeSites = negatives)
+        ret = Crossovers.one_point(sol1, sol2, site = site)
+        return ret
+
+    @staticmethod
+    def crossover_2p(sol1, sol2):
+        sol1Len = len(sol1)
+        site = random.randint(1, sol1Len - 2)
+        negatives = [10, 11] # prevent crossover through AG at sites 10, 11
+        site1 = Crossovers.pick_random_site(rangeLen = 13, negativeSites = negatives) 
+        negatives = negatives + [site1]
+        site2 = Crossovers.pick_random_site(rangeLen = 13, negativeSites = negatives) 
+        ret = Crossovers.two_point(sol1, sol2, site1 = site1, site2 = site2)
+        return ret
+
+    @staticmethod
+    def crossover_uniform(sol1, sol2, swap_prob = 0.5):
+        negatives = [10, 11] # prevent crossover through AG at sites 10, 11
+        ret = Crossovers.uniform(sol1, sol2, swap_prob = swap_prob, negativeSites = negatives)
+        return ret
+
+    @staticmethod
+    def crossover_uniform_orderbased(sol1, sol2):
+        negatives = [10, 11] # prevent crossover through AG at sites 10, 11
+        ret = Crossovers.uniform_orderbased(sol1, sol2, negativeSites = negatives)
+        return ret
 
     def mutate(self, solution):
         return Mutations.provided_flip(solution = solution, flipProvider = self.baseFlip, negativeSites = [10,11])
@@ -81,10 +113,17 @@ def main(cssFile = 'data/dbass/css_3prime.tsv',
     initPopulation = random3primeSpliceSitesPopulation(M, N)
     print(initPopulation)
 
+    recombine_provider = lambda gaModel: lambda population: Selections.ranked(population, gaModel.fitness)
+    crossover_provider = lambda gaModel: EI5pSpliceSitesGAModel.crossover_uniform_orderbased
+
     authThread = GASpliceSitesThread(authGASpliceSites, initPopulation, genCount = genCount,
-        crossoverProbability = 0.1, mutationProbability = 0.1)
+        crossoverProbability = crossoverProbability, mutationProbability = mutationProbability, 
+        recombine_provider = recombine_provider,
+        crossover_provider = crossover_provider)
     cssThread = GASpliceSitesThread(cssGASpliceSites, initPopulation, genCount = genCount,
-        crossoverProbability = 0.1, mutationProbability = 0.1)
+        crossoverProbability = crossoverProbability, mutationProbability = mutationProbability, 
+        recombine_provider = recombine_provider,
+        crossover_provider = crossover_provider)
 
     cssThread.start()
     cssThread.join()
@@ -131,7 +170,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='libgenetic implementation for Splice Site evolution using PWM')
     parser.add_argument('--gen_count', type=int, help='generation count', required=True)
     parser.add_argument('--gen_size', type=int, help='generation size', required=True)
-    parser.add_argument('--xover_prob', type=float, help='crossover probability', default=0.1)
+    parser.add_argument('--xover_prob', type=float, help='crossover probability', default=0.7)
     parser.add_argument('--mut_prob', type=float, help='mutation probability', default=0.1)
     parser.add_argument('--css_file', help='path to css tsv data file', default='%s/data/dbass/css_3prime.tsv' % os.getcwd())
     parser.add_argument('--authss_file', help='path to authss tsv data file', default='%s/data/hs3d/Intron-Exon_3prime/authss_3prime.tsv' % os.getcwd())
