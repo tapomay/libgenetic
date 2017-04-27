@@ -12,3 +12,6 @@ s = pickle.dumps(perfMap)
 with open(fname, 'w') as f:
 	f.write(s)
 
+import bio_ga.latexify as l
+summary = l.latexify(perfMap)
+l.summaryTable(summary)

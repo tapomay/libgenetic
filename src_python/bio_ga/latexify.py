@@ -58,13 +58,27 @@ def create_histo_table(dataname, dimPerfMap, lines, histoLambda, meanLambda, sub
 		dimPerf = dimPerfMap[(M,N)]
 		
 		j = 0
+		maxN = -float('inf')
+		maxNIdx = -1
+		maxN_f = -1
 		for (f,N) in histoLambda(dimPerf):
-			tableData[j][idx] = str(f)
-			tableData[j][idx+1] = str(N)					
+			if N > maxN:
+				maxN = N
+				maxNIdx = j
+				maxN_f = f
+
+			if j < ROWLIMIT:
+				tableData[j][idx] = str(f)
+				tableData[j][idx+1] = str(N)					
 			j+= 1
-			if j == ROWLIMIT:
-				break
+		# Overwrite first row with max
+		tableData[0][idx] = str(maxN_f)
+		tableData[0][idx+1] = str(maxN)
 		idx += 2
+
+	maxStatRow = tableData[0]
+	lines.append(" & ".join(maxStatRow) + "\\\\")
+	lines.append("\hline")
 
 	for tableRow in tableData:
 		lines.append(" & ".join(tableRow) + "\\\\")
@@ -73,15 +87,18 @@ def create_histo_table(dataname, dimPerfMap, lines, histoLambda, meanLambda, sub
 
 	dimcols = []
 	idx = 0
+	summary = []
 	for M,N in sorted(dimPerfMap):
 		dimPerf = dimPerfMap[(M,N)]
 		if idx == 0:
 			tmplVal = tmpl0 % ("\\^{f} = %s" % str(meanLambda(dimPerf)))
 		elif idx == len(dimPerfMap) - 1:
-			tmplVal = tmplN % ("\\^{f} = %s" % str(dimPerf.scoreFitnessMean))
+			tmplVal = tmplN % ("\\^{f} = %s" % str(meanLambda(dimPerf)))
 		else:
-			tmplVal = tmpl % ("\\^{f} = %s" % str(dimPerf.scoreFitnessMean))
+			tmplVal = tmpl % ("\\^{f} = %s" % str(meanLambda(dimPerf)))
 		dimcols.append(tmplVal)
+		score = str(meanLambda(dimPerf))
+		summary.append([str(M), str(N), score])
 		idx += 1
 
 	lines.append(" & ".join(dimcols) + "\\\\")
@@ -90,24 +107,30 @@ def create_histo_table(dataname, dimPerfMap, lines, histoLambda, meanLambda, sub
 	lines.append("\end{tabular}")
 	lines.append("\end{adjustbox}")
 	lines.append("\\end{table}")
+	return summary
 
 
 def create_tables(dataname, dimPerfMap, lines, subsectitle):
 
+	retSummary = []
 	# lines.append("\subsubsection{DATA:%s | FITNESS}" % (dataname.upper()))
 	histoLambda = lambda dimPerf: dimPerf.scoreFitnessHisto
 	meanLambda = lambda dimPerf: dimPerf.scoreFitnessMean
-	create_histo_table(dataname, dimPerfMap, lines, histoLambda, meanLambda, subsectitle, header = "%s - fitness" % dataname)
-
+	summary = create_histo_table(dataname, dimPerfMap, lines, histoLambda, meanLambda, subsectitle, header = "%s - fitness" % dataname)
+	retSummary = retSummary + [['fitness', summ[0], summ[1], summ[2]] for summ in summary] # M,N,score
 	# lines.append("\subsubsection{DATA:%s | SELF}" % (dataname.upper()))
 	histoLambda = lambda dimPerf: dimPerf.scoreSelfHisto
 	meanLambda = lambda dimPerf: dimPerf.scoreSelfMean
-	create_histo_table(dataname, dimPerfMap, lines, histoLambda, meanLambda, subsectitle, header = "%s - self" % dataname)
+	summary = create_histo_table(dataname, dimPerfMap, lines, histoLambda, meanLambda, subsectitle, header = "%s - self" % dataname)
+	retSummary = retSummary + [['pscore', summ[0], summ[1], summ[2]] for summ in summary] # M,N,score
 
 	# lines.append("\subsubsection{DATA:%s | COMPETE}" % (dataname.upper()))
 	histoLambda = lambda dimPerf: dimPerf.scoreCompeteHisto
 	meanLambda = lambda dimPerf: dimPerf.scoreCompeteMean
-	create_histo_table(dataname, dimPerfMap, lines, histoLambda, meanLambda, subsectitle, header = "%s - compete" % dataname)
+	summary = create_histo_table(dataname, dimPerfMap, lines, histoLambda, meanLambda, subsectitle, header = "%s - compete" % dataname)
+	retSummary = retSummary + [['cscore', summ[0], summ[1], summ[2]] for summ in summary] # M,N,score
+
+	return retSummary
 
 def latexify(perfMap):
 	'''
@@ -135,6 +158,8 @@ def latexify(perfMap):
 
 	'''
 	lines = []
+	retSummary = []
+
 	for (select, xover), perf1 in perfMap.items():
 		subsectitle = "SELECTION: %s; CROSSOVER: %s" % (select.upper().replace('_', '-'), xover.upper().replace('CROSSOVER', '').replace('_', ''))
 		lines.append("\subsection{%s}" % subsectitle)
@@ -147,8 +172,53 @@ def latexify(perfMap):
 
 		for dataname, dimPerfMap in dataPerfs.items():
 			dataname = dataname.upper().replace('_', '-')
-			create_tables(dataname, dimPerfMap, lines, subsectitle)
-		# for k, dataList in dataPerfs.items():
+			summary = create_tables(dataname, dimPerfMap, lines, subsectitle)
+			select = select.upper().replace('_', '-')
+			xover = xover.upper().replace('CROSSOVER', '').replace('_', '')
+			retSummary = retSummary + [[select, xover, dataname, summ[0], summ[1], summ[2], summ[3]] for summ in summary] # metric, M,N,score
 
+	print("\n".join(lines))
+	return retSummary
+
+def select_best(summary):
+	'''
+	select best by dataname, metric
+	'''
+	summMap = dict()
+	for summ in summary:
+		(select,xover,dataname,metric,M,N,score) = (summ[0], summ[1], summ[2], summ[3], summ[4], summ[5], summ[6])
+		if (dataname, metric) not in summMap:
+			summMap[(dataname, metric)] = []
+		summMap[(dataname, metric)].append((summ, score))
+
+	ret = []
+	for (dataname, metric), summArr in summMap.items():
+		summArrSorted = sorted(summArr, reverse=True, key=lambda kv: kv[1])
+		ret.append(summArrSorted[0][0])
+
+	ret = sorted(ret, key = lambda arr: (arr[2], arr[3])) #sort by dataname, metric
+	return ret
+
+def summaryTable(summary):
+	summary = select_best(summary)
+	header = ['select', 'xover', 'dataname', 'metric', 'M', 'N', 'score']
+	colspecs = "|c|c|c|c|c|c|c|"
+	lines = []
+
+	lines.append("\\begin{table}[H]")
+	lines.append("\centering")
+	lines.append("\caption{SUMMARY}")
+	lines.append("\\begin{adjustbox}{width=1\\textwidth}")
+	lines.append("\\begin{tabular}{ %s }" % colspecs)
+	lines.append("\hline")
+	lines.append(" & ".join(header) + "\\\\")
+	lines.append("\hline")
+	for summ in summary:
+		lines.append("\hline")
+		lines.append(" & ".join(summ) + "\\\\")
+	lines.append("\hline")
+	lines.append("\end{tabular}")
+	lines.append("\end{adjustbox}")
+	lines.append("\\end{table}")
 
 	print("\n".join(lines))

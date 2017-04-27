@@ -235,7 +235,7 @@ class Crossovers:
         return (child1, child2)
 
     @staticmethod
-    def uniform_orederbased(parent1, parent2, negativeSites = [], swap_prob = 0.5):
+    def uniform_orderbased(parent1, parent2, negativeSites = []):
         '''
             Permutation sensitive:
             In uniform order-based crossover, two parents (say P 1 and P 2 ) are randomly sel-
@@ -248,7 +248,41 @@ class Crossovers:
         parentLen = len(parent1)
         child1 = parent1[:]
         child2 = parent2[:]
-        raise Exception("Not yet implemented")
+        maskStr = bin(random.getrandbits(parentLen)).replace('0b','')
+        prefix = '0'*(parentLen - len(maskStr))
+        maskStr = prefix + maskStr
+        # print("maskstr: %s" % maskStr)
+
+        c1mask = [int(c) for c in maskStr]
+        c2mask = [int(c) for c in maskStr]
+
+        for neg in negativeSites:
+            c1mask[neg] = 1
+            c2mask[neg] = 1
+
+        c1SwapSet = [child1[idx] for idx in range(parentLen) if c1mask[idx] == 0]
+        c2SwapSet = [child2[idx] for idx in range(parentLen) if c2mask[idx] == 0]
+        # print(c1SwapSet)
+        # print(c2SwapSet)
+
+        # print(c1mask)
+        # print(c2mask)
+        for idx in range(parentLen):
+            allele = parent2[idx]
+            if allele in c1SwapSet and 0 in c1mask:
+                c1Idx = c1mask.index(0)
+                child1[c1Idx] = allele
+                c1mask[c1Idx] = 1
+
+            allele = parent1[idx]
+            if allele in c2SwapSet and 0 in c2mask:
+                c2Idx = c2mask.index(0)
+                child2[c2Idx] = allele
+                c2mask[c2Idx] = 1
+
+        # print(c1mask)
+        # print(c2mask)
+        return (child1, child2)
 
     @staticmethod
     def orederbased(parent1, parent2, negativeSites = [], swap_prob = 0.5):
@@ -388,14 +422,20 @@ class Selections:
             fitness = fitnessFunction(solution)
             fitnessTupleArr.append((solution, fitness))
         # print fitnessTupleArr
-        fitnessTupleArrSorted = sorted(fitnessTupleArr, reverse=True, key = lambda x:x[1]) # sort by fitness
+        fitnessTupleArrSorted = sorted(fitnessTupleArr, key = lambda x:x[1]) # sort by fitness
         # print fitnessTupleArrSorted
 
-
-        popFitness = float(sum([x[1] for x in fitnessTupleArrSorted]))
+        count = len(fitnessTupleArrSorted)
+        popFitness = count * (count+1) / 2.0 # simulating rank order
 
         # normalize fitnessArr
-        normFitnessTupArr = map(lambda x: (x[0], x[1] / popFitness), fitnessTupleArrSorted)
+        normFitnessTupArr = []
+        idx = 1
+        for tup in fitnessTupleArrSorted:
+            rankProb = idx / popFitness
+            normFitnessTupArr.append((tup[0], rankProb))
+            idx += 1
+
         # print "normFit: %s" % str(normFitnessTupArr)
 
         # compute cumulative normalized fitness values

@@ -111,6 +111,12 @@ class EI5pSpliceSitesGAModel:
         ret = Crossovers.uniform(sol1, sol2, swap_prob = swap_prob, negativeSites = negatives)
         return ret
 
+    @staticmethod
+    def crossover_uniform_orderbased(sol1, sol2):
+        negatives = [3, 4] # prevent crossover through GT at sites 3, 4, first and last bases
+        ret = Crossovers.uniform_orderbased(sol1, sol2, negativeSites = negatives)
+        return ret
+
     def mutate(self, solution):
         return Mutations.provided_flip(solution = solution, flipProvider = self.baseFlip, negativeSites = [3,4])
 
@@ -119,7 +125,7 @@ class EI5pSpliceSitesGAModel:
         # return "P: %s\nW: %s\nC: %s\nS: %s" % (str(self._profits), str(self._weights), str(self._capacity), str(self._solution))
 
 class GASpliceSitesThread(threading.Thread):
-    def __init__(self, gaModel, initPopulation, genCount, crossover = None, recombine = None,
+    def __init__(self, gaModel, initPopulation, genCount, crossover_provider = None, recombine_provider = None,
         crossoverProbability = 0.1, mutationProbability = 0.1):
         threading.Thread.__init__(self)
         self._gaModel = gaModel
@@ -127,13 +133,16 @@ class GASpliceSitesThread(threading.Thread):
         self._genCount = genCount
         self._crossoverProbability = crossoverProbability
         self._mutationProbability = mutationProbability
-        self._crossover = crossover
-        if not crossover:
-            self._crossover = EI5pSpliceSitesGAModel.crossover_1p
 
-        self._recombine = recombine
-        if not recombine:
+        if not crossover_provider:
+            self._crossover = EI5pSpliceSitesGAModel.crossover_1p
+        else:
+            self._crossover = crossover_provider(self._gaModel)
+
+        if not recombine_provider:
             self._recombine = lambda population: Selections.ranked(population, self._gaModel.fitness)
+        else:
+            self._recombine = recombine_provider(self._gaModel)
         
         self._gaBase = None
 
@@ -285,10 +294,15 @@ def main(cssFile = 'data/dbass-prats/CrypticSpliceSite.tsv',
     initPopulation = random5primeSpliceSitesPopulation(M, N)
     print(initPopulation)
 
+    recombine_provider = lambda gaModel: lambda population: Selections.ranked(population, gaModel.fitness)
+    crossover_provider = lambda gaModel: EI5pSpliceSitesGAModel.crossover_uniform_orderbased
+
     authThread = GASpliceSitesThread(authGASpliceSites, initPopulation, genCount = genCount,
-        crossoverProbability = 0.1, mutationProbability = 0.1)
+        crossoverProbability = 0.1, mutationProbability = 0.1, recombine_provider = recombine_provider,
+        crossover_provider = crossover_provider)
     cssThread = GASpliceSitesThread(cssGASpliceSites, initPopulation, genCount = genCount,
-        crossoverProbability = 0.1, mutationProbability = 0.1)
+        crossoverProbability = 0.1, mutationProbability = 0.1, recombine_provider = recombine_provider,
+        crossover_provider = crossover_provider)
 
     cssThread.start()
     cssThread.join()

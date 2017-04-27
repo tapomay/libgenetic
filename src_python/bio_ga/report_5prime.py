@@ -82,12 +82,10 @@ class MultirunExecStat:
 		ret = Counter(data)
 		return ret.items()
 
-def waitForCompletion(gaModel, initPopulation, genCount, select_oper, xover_oper, cprob, mprob):
+def waitForCompletion(gaModel, initPopulation, genCount, sel_provider, xover_provider, cprob, mprob):
     gaThread = GASpliceSitesThread(gaModel, initPopulation, genCount = genCount,
         crossoverProbability = cprob, mutationProbability = mprob,
-        crossover = xover_oper, recombine = None)
-    select = select_oper(gaThread)
-    gaThread._recombine = select
+        crossover_provider = xover_provider, recombine_provider = sel_provider)
 
     gaThread.start()
     gaThread.join()
@@ -95,7 +93,7 @@ def waitForCompletion(gaModel, initPopulation, genCount, select_oper, xover_oper
     return gaBase
 
 
-def execute(selection_selector, xover, dataspecs):
+def execute(sel_provider, xover_provider, dataspecs):
 	'''
 	for each gensize:
 		for each gencount:
@@ -117,6 +115,11 @@ def execute(selection_selector, xover, dataspecs):
 	generationSizes = [10, 20]
 	generationCounts = [10, 100, 1000]
 	runCount = 100
+
+	# generationSizes = [10]
+	# generationCounts = [10]
+	# runCount = 10
+
 	execStat = {}
 	for gensize in generationSizes:
 		M = gensize
@@ -130,7 +133,7 @@ def execute(selection_selector, xover, dataspecs):
 					bestGAFitness = -float('inf')
 					for runIdx in range(runCount):
 						print("EXECUTION(gensize: %d, gencount: %d, dataspec.name: %s, runIdx: %d)" % (gensize, gencount, dataspec.name, runIdx))
-						gaBase = waitForCompletion(dataspec.gaModel, initPopulation, genCount=gencount, select_oper = selection_selector, xover_oper = xover, cprob = 0.7, mprob = 0.1)
+						gaBase = waitForCompletion(dataspec.gaModel, initPopulation, genCount=gencount, sel_provider = sel_provider, xover_provider = xover_provider, cprob = 0.7, mprob = 0.1)
 						
 						((bestgen_scoreSelf, bestgen_scoreCompete), (bestgen_genSelf, bestgen_genCompete), fitness) = \
 							MatchUtils.match_stat_2d(gaBase=gaBase, selfData=dataspec.gaModel.rawdata, competeData=dataspec.compareModel.rawdata)
@@ -150,24 +153,28 @@ def main():
 	composite = Composite5pGA()
 	dataspecs = composite.getspecs().values()
 
-	selections_selector = {"rouletteWheel": lambda gaThread: lambda population: Selections.rouletteWheel(population, gaThread._gaModel.fitness), 
-			"ranked": lambda gaThread: lambda population: Selections.ranked(population, gaThread._gaModel.fitness), 
-			"tournament": lambda gaThread: lambda population: Selections.tournament(population, gaThread._gaModel.fitness)}
+    # recombine_provider = lambda gaModel: lambda population: Selections.ranked(population, gaModel.fitness)
+    # crossover_provider = lambda gaModel: EI5pSpliceSitesGAModel.crossover_uniform_orderbased
 
-	crossovers = {"crossover_1p": EI5pSpliceSitesGAModel.crossover_1p, "crossover_2p": EI5pSpliceSitesGAModel.crossover_2p, "crossover_uniform": EI5pSpliceSitesGAModel.crossover_uniform}
+	selection_providers = {"rouletteWheel": lambda gaModel: lambda population: Selections.rouletteWheel(population, gaModel.fitness), 
+			"ranked": lambda gaModel: lambda population: Selections.ranked(population, gaModel.fitness), 
+			"tournament": lambda gaModel: lambda population: Selections.tournament(population, gaModel.fitness)}
 
-	sel = selections_selector["rouletteWheel"]
+	crossover_providers = {"crossover_1p": lambda gaModel: EI5pSpliceSitesGAModel.crossover_1p, "crossover_2p": lambda gaModel: EI5pSpliceSitesGAModel.crossover_2p, 
+		"crossover_uniform": lambda gaModel: EI5pSpliceSitesGAModel.crossover_uniform, "crossover_uniform_orderbased": lambda gaModel: EI5pSpliceSitesGAModel.crossover_uniform_orderbased}
+
+	sel = selection_providers["rouletteWheel"]
 	s_name = "rouletteWheel"
 	perfMap = dict()
 
-	for x_name, xover in crossovers.items():
+	for x_name, xover in crossover_providers.items():
 		execStatMap = execute(sel, xover, dataspecs)
 		print("INITIATING EXECUTION FOR: %s" % str((s_name, x_name)))
 		perfMap[(s_name, x_name)] = execStatMap
 	
-	xover = crossovers["crossover_1p"]
+	xover = crossover_providers["crossover_1p"]
 	x_name = "crossover_1p"
-	for s_name, sel in selections_selector.items():
+	for s_name, sel in selection_providers.items():
 		print("INITIATING EXECUTION FOR: %s" % str((s_name, x_name)))
 		execStatMap = execute(sel, xover, dataspecs)
 		perfMap[(s_name, x_name)] = execStatMap

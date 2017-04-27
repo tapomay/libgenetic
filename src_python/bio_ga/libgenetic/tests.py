@@ -44,10 +44,21 @@ def test_tournamentSelection():
 	ret = Selections.tournament(population, fitnessFunction)
 	print(ret)
 
+def test_xover_uniformorder():
 
-print("ROULETTE")
-test_rouletteWheel()
-print("RANKED")
-test_rankedSelection()
-print("TOURNAMENT")
-test_tournamentSelection()
+	population = [['A', 'C', 'G', 'T', 'A', 'C', 'G', 'T', 'A'], ['A', 'A', 'C', 'G', 'T', 'A', 'C', 'G', 'T'],
+		['T', 'A', 'A', 'C', 'G', 'T', 'A', 'C', 'G'], ['G', 'T', 'A', 'A', 'C', 'G', 'T', 'A', 'C']]
+	parent1 = ['A', 'C', 'G', 'T', 'A', 'C', 'G', 'T', 'A']
+	parent2 = ['A', 'A', 'C', 'G', 'T', 'A', 'C', 'G', 'T']
+	ret = Crossovers.uniform_orderbased(parent1, parent2)
+	print((parent1, parent2))
+	print(ret)
+
+# print("ROULETTE")
+# test_rouletteWheel()
+# print("RANKED")
+# test_rankedSelection()
+# print("TOURNAMENT")
+# test_tournamentSelection()
+print("UniOrd xover")
+test_xover_uniformorder()
