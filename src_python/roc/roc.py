@@ -36,7 +36,7 @@ def roc_compute(positives, negatives):
             tpr_Y.append(tpr)
             # ROC = fpr@X vz tpr#Y
             vals.append(stat)
-        thresh += 1
+        thresh += 0.01
 
     return (fpr_X, tpr_Y, vals)
 

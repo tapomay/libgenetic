@@ -158,7 +158,7 @@ def main():
 
 	selection_providers = {"rouletteWheel": lambda gaModel: lambda population: Selections.rouletteWheel(population, gaModel.fitness), 
 			"ranked": lambda gaModel: lambda population: Selections.ranked(population, gaModel.fitness), 
-			"tournament": lambda gaModel: lambda population: Selections.tournament(population, gaModel.fitness)}
+			"tournament	": lambda gaModel: lambda population: Selections.tournament(population, gaModel.fitness)}
 
 	crossover_providers = {"crossover_1p": lambda gaModel: EI5pSpliceSitesGAModel.crossover_1p, "crossover_2p": lambda gaModel: EI5pSpliceSitesGAModel.crossover_2p, 
 		"crossover_uniform": lambda gaModel: EI5pSpliceSitesGAModel.crossover_uniform, "crossover_uniform_orderbased": lambda gaModel: EI5pSpliceSitesGAModel.crossover_uniform_orderbased}
