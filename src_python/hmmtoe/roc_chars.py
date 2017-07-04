@@ -17,7 +17,7 @@ def roc_compute(positives, negatives):
     minThresh = math.floor(min(positives + negatives))
     maxThresh = math.ceil(max(positives + negatives))
 
-    threshDelta = (maxThresh - minThresh) / 10
+    threshDelta = (maxThresh - minThresh) / float(100)
     thresh = minThresh
     fpr_X = []
     tpr_Y = []

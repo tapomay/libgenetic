@@ -67,6 +67,12 @@ class TOE_HMM_CHARS:
         score = self._hmm.score(symsArr)
         return score
 
+    def trainedLambda(self):
+        A = self._hmm.transmat_
+        B = self._hmm.emissionprob_
+        pi = self._hmm.startprob_
+        return (A, B, pi)
+
     def persistHMM(self, filename):
         import pickle
         s = pickle.dumps(self)

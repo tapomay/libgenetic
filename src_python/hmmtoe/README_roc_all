@@ -1,0 +1,5 @@
+Order of executions:
+1. Create encoded files
+2. rht_train_all_chars.py: this will create trained dot hmm model files
+3. rht_roc_chars.py: This will use model files as input; creates positives_chars_%N and negatives_chars_%N score files
+4. roc_chars.py: This will use the positives and negatives files as input; prints ROC stats and plots the graph
